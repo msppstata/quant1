@@ -7,7 +7,6 @@ McCourt School of Public Policy, Georgetown University
  - Working in do-files / comments
 
 
-
 ## Variables vs. Observations
 
 
@@ -36,6 +35,8 @@ McCourt School of Public Policy, Georgetown University
 * Open browse window 
   * using command line: `browse`
   * using icon (looks like a mini-spreadsheet grid with a little magnifying glass, grid with pencil icon will open the browser in edit mode to change, add, or delete data) or using drop-down menus:
+  
+  ![browse](figures/1-Browser.png)
   * - file > data > data editor > data editor (browse)
 
 * Variables are columns across the top and observations are the rows down the side.
@@ -156,26 +157,26 @@ Questions using the auto.dta example dataset:
 
 
 
-* Result should be something like this:
-
+### Result should be something like this:
+```
 sysuse auto.dta
 
 * 1. describe all variables 
-> describe
+describe
 
 * 2. summarize price mpg weight and length 
-> summarize price mpg weight length
+summarize price mpg weight length
 
 * 3. What is the difference between the highest and lowest mpg?
-> display 41-12
+display 41-12
 * Difference between highest and lowest mpg is 29.
 
 * 4. Summarize price, mpg, weight, and length for cars costing less than $4,000
-> summarize price mpg weight length if price < 4000
+summarize price mpg weight length if price < 4000
 
 * 5. List the make and price of the most expensive car
-> list make price if price == 15906
-
+list make price if price == 15906
+```
 
 
 
