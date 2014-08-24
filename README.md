@@ -1,6 +1,6 @@
-![logo](figures/00-logo.gif)
-
 MSPP STATA Recitation for Quant 1
+
+![logo](figures/00-logo.gif)
 ==========
 
 Recitation is designed to give you the opportunity to learn and use the statistical software package, Stata. This class is designed to supplement the work you do in Statistical Methods for Policy Analysis and ultimately prepare you for the client-based or thesis capstone.
@@ -11,7 +11,7 @@ Attendance is kept through an online sign-in sheet each week. Please sign-in bef
     
 ### Obtaining Stata
 
-I strongly recommend that you go to the UIS Service Desk in St. Mary’s Hall to obtain a copy of Stata 13 for your personal computer. You can download the software from http://georgetown.onthehub.com/ but you must visit the desk in person to obtain a license. 
+You can download the software from http://georgetown.onthehub.com/ and obtain a license online. You can also go to the UIS Service Desk in St. Mary’s Hall with your laptop to obtain a copy of Stata 13 for your personal computer.
 
 ### Additional Help
 
