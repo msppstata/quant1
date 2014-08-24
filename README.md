@@ -1,7 +1,6 @@
-MSPP STATA Recitation for Quant 1
+# MSPP STATA Recitation for Quant 1
 
-![logo](figures/00-logo.gif)
-==========
+[McCourt School of Public Polic, Georgetown University](http://mccourt.georgetown.edu/)
 
 Recitation is designed to give you the opportunity to learn and use the statistical software package, Stata. This class is designed to supplement the work you do in Statistical Methods for Policy Analysis and ultimately prepare you for the client-based or thesis capstone.
 
