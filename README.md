@@ -6,7 +6,7 @@ Recitation is designed to give you the opportunity to learn and use the statisti
 
 ### Attendance
 
-Attendance is kept through an online sign-in sheet each week. Please sign-in before you leave and check that you have attended. A sample sign-in sheet can be found [here](goo.gl/e7pRXO). Each professor uses attendance information differently, so I cannot tell you the consequences of missing a class (besides the fact that we will miss you!). Due to availability of space, it is important that you attend the recitation section that you are assigned. If circumstances prevent you from attending your section, please email your correponding TA first before attending a different section.
+Attendance is kept through an online sign-in sheet each week. Please sign-in before you leave and check that you have attended. A sample sign-in sheet can be found [here](http://goo.gl/e7pRXO). Please make sure you are able to access the sign-in sheet before the first recitation. Each professor uses attendance information differently, so I cannot tell you the consequences of missing a class (besides the fact that we will miss you!). Due to availability of space, it is important that you attend the recitation section that you are assigned. If circumstances prevent you from attending your section, please email your correponding TA first before attending a different section.
     
 ### Obtaining Stata
 
