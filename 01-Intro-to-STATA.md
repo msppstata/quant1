@@ -14,26 +14,29 @@ McCourt School of Public Policy, Georgetown University
 - Open Stata by clicking icon
 
 
-- Open example data set, auto.dta, using drop-down menus:
-	- File > example data sets > auto.dta
+- Open example data set, `auto.dta`, 
+  - Type `sysuse auto` in the command panel. `sysuse` is a way to use shipped datasets.
+	- Or, using drop-down menus: `File > example data sets > auto.dta`
 
 
 - Main Stata Window(s):
 ![Stata Window](figures/1-1.png)
      - Results window: Shows commands entered after a `.` and the resulting output.
-     - Variables window: Shows variable names and descriptions/labels. 
+     - Variables window: Shows variable names and descriptions / labels. 
          Click a variable name to enter it into the command line. 
          Will be empty if no data is loaded.
      - Review window: Shows previous commands. Click a previous command to enter it into the command line.
      - Command line window: type in commands here and hit 'enter' to execute.
          More on this below.
    - Some windows may not appear or are floating on Mac computers in earlier versions of Stata. 
-         To show/hide these, use the drop-down menu: Window> Command/Results/Review/Variables 
+         To show/hide these, use the drop-down menu: `Window> Command/Results/Review/Variables `
 
 
 
-* Open browse window using icon (looks like a mini-spreadsheet grid with a little magnifying glass, grid with pencil icon will open the browser in edit mode to change, add, or delete data) or using drop-down menus:
-         * - file > data > data editor > data editor (browse)
+* Open browse window 
+  * using command line: `browse`
+  * using icon (looks like a mini-spreadsheet grid with a little magnifying glass, grid with pencil icon will open the browser in edit mode to change, add, or delete data) or using drop-down menus:
+  * - file > data > data editor > data editor (browse)
 
 * Variables are columns across the top and observations are the rows down the side.
 
@@ -47,12 +50,12 @@ McCourt School of Public Policy, Georgetown University
 ## Basic Commands to Explore the Data Set
 
 
-* `Describe`: 
+* `describe`: 
    from drop-down menu: data > describe data > describe data in memory
     - For specified variables (all variables if no specific variables specified in command), lists name, description, variable type (storage type-- byte, int, and float are numeric; anything starting with `str` is a string variable), display format (how many digits before decimals are rounded), and label. 
     - If run for all variables, also lists the number of observations, number of variables, and information about the data file.
 
-* `Summarize`: 
+* `summarize`: 
     from drop-down menu: data > describe data > summary statistics
   -For specified variables dislplays variable name, # of observations, 
        mean, standard deviation, minimum value, and maximum value.
@@ -63,22 +66,17 @@ McCourt School of Public Policy, Georgetown University
 * For `describe,` `summarize,` and `list` you can specify one or more variables to run the command on by listing their names in the variables line separated by a space ` `, rather than running the command for all variables by leaving the line blank.
 This is espeically useful for extremely large data sets where seeing all variables would be cumbersome
 
-* `Display`: from drop-down menu: data > other utilities > hand calculator
+* `display`: from drop-down menu: `data > other utilities > hand calculator`
   - Performs basic athrimatic calcluations. Can use standard operators: 
      `+`, `-`, `*` (multiplication), `/` (division), `^` (exponent/power). Expressions follow order of operations and can use  parentheses `()` to emphasize specific order of operations.
 
-* `Count`: from drop-down menu: data > data utilities > count observations satifying condition
+* `count`: from drop-down menu: `data > data utilities > count` observations satisfying condition
    - Counts the number of observations satisfying specified conditions in `if` box. (if no conditions specified, the command counts the total number of observations in your dataset).
 
 
 
 
 ## Drop-down menus vs. command line
- 
-
-
- - So far, all commands have been issued through drop-down menus, but we also
-   have the option of typing commands directly into the command line.
  
  - Every command issued through the drop-down menu can also be issued as
 	a typed command.
