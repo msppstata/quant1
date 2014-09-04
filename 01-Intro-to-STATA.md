@@ -105,7 +105,25 @@ This is espeically useful for extremely large data sets where seeing all variabl
 	- Page-up cycles through old commands
 	
 
+## Wroking in a do-file
 
+* Replication is particularly important in studies that can impact broad policy
+* Specificlly, data and computer code (i.e. do-file) should be available.
+
+### Do-file editor
+* Start by clicking the Do-file Editor button, or by typing `doedit` in the command window and pressing Enter.
+* Do-file editor has syntax highlighting function. Try copying the following code to a code editor:
+```
+* An example do-file
+sysuse auto
+gen gp100=100/mpg
+label var gp100m "Gallons per 100 miles"
+reg gp100m weight foreignn
+```
+![do-file editor](figures/1-do-file-editor.png)
+
+* Execute codes by clicking on the `Do` button. What's wrong? Try clicking the `Do` button again and see result.
+* Correct codes and click the `Do` button again
 
 ## Running commands on a subset of observations
 
@@ -143,7 +161,7 @@ Type `summarize price weight if mpg > 20 | foreign == 1` and hit enter.
 
 
 ##  In-Class Activity 1
-Open the auto.dta data set and issue the `describe` and `summarize` commands from above. 
+Open the `auto.dta` data set and issue the `describe` and `summarize` commands from above. 
 
 Try to answer the questions below.
 

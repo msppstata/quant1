@@ -175,7 +175,8 @@ display 1442/2246
 ```
 
 
-## *** Sample Questions ***
+## In Class Activity 1
+
 Create a do-file to answer the questions below.
 Document questions and answers with comments.
 
@@ -184,40 +185,44 @@ Document questions and answers with comments.
  2. What is the most common industry for workers in this sample?
  3. What is the average wage for that industry? 
 
+```
+clear
+sysuse nlsw88.dta
+* 1. Report appropriate summary statistics for the following variables: age, race, grade, collgrad, union 
 
-	>clear
+summarize age grade collgrad union
 
-	>sysuse nlsw88.dta
-
-1. Report appropriate summary statistics for the following variables: age, race, grade, collgrad, union 
-
-    >summarize age grade collgrad union
 * We can't summarize race - mean and sd don't mean anything!
 
-   >tabulate race
-   >tabulate collgrad
-   >tabulate union
+tabulate race
+tabulate collgrad
+tabulate union
+
 * We can tabulate the categorical and binary variables.
-2. What is the most common industry for workers in this sample?
+* 2. What is the most common industry for workers in this sample?
 
-    >tabulate industry
-Ans: Professional Services 
-3. What is the average hourly wage for that industry? 
+tabulate industry
 
-   >tabulate industry, nolabel
-   >summarize wage if industry==11
+* Ans: Professional Services 
 
-Ans: $7.87 per hour
+* 3.What is the average hourly wage for that industry? 
 
+tabulate industry, nolabel
+summarize wage if industry==11
+
+* Ans: $7.87 per hour
+```
 
 
 ## Reporting Results
 
 Professors have different requirements for reporting answers.
 Some may not accept copy/paste Stata output.
+
 But you still may want to use copy/paste for your own notes.
 
 Two ways: 
+
 1. copy text, paste to Word
 	- change font to courier new
 	- change size to 8, 9, or 10
@@ -228,21 +233,19 @@ Two ways:
 
 
 ## Log File 
+ - Stata can record your session into a file colled a log file but does not start a log automatically; you must tell Stata to record your session.
  - Close log file and look at output before moving on to after class exercise.
-
-## Log Files for Recording a Session [CHANGE NEEDED]
- - Last week we used a log to record the final output from a do-file.
- - You can also use them to keep a record of an interactive session.
- - Useful in recitation, so you have a record of the commands that you used.
- - Start a log now, to record commands and output from this recitation. 
+ - For eaiser review, select `.log` format.
 
 
 
 
 
 ## After Class Exercise 
- Answer the questions below using the census.dta data sets.
- Create a do-file and log-file showing your work.
+ Answer the questions below using the `census.dta` data sets.
+ 
+ Create a `do-file` and `log-file` showing your work.
+ 
  Document answers using comments.
 
  1. The `region` variable assigns US states to different regions of the country. 
@@ -259,13 +262,15 @@ Two ways:
 
 
 #### After Class Exercise Answer
-   
-    clear
-    sysuse census.dta
+```   
+clear
+sysuse census.dta
+```
 
 1. The `region` variable assigns US states to different regions of the country. How many different regions are used in this data?
-
-    >tabulate region
+```
+tabulate region
+```
 Ans: 4 regions
 2. What are the names of the different regions?
 
@@ -274,21 +279,26 @@ Ans: 4 regions
 
 	Ans: South
 4. Write a command to tabulate the regions in descending order of number of states.
-
-    >tabulate region, sort
+```
+tabulate region, sort
+```
 5. List the states in the largest region.
-
-    >tabulate region, nolabel
-    >codebook region
-    >list state if region==3
+```
+tabulate region, nolabel
+codebook region
+list state if region==3
+```
 6. Which region has the highest average median age? What is the median age of that region?
-
-    >tabstat medage, by(region)
+```
+tabstat medage, by(region)
+```
 	Ans: NE , 31.2333 years
 7. Are there any string variables in this data set? If so, which variables? 
-
-    describe
+```
+describe
+```
 	Ans: Yes, state and state2
 8. Use tabstat to show the total number of marriages and divorces for each region. 
-
-    >tabstat marriage divorce, statistics(sum) by(region)
+```
+tabstat marriage divorce, statistics(sum) by(region)
+```
