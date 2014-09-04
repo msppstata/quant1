@@ -12,25 +12,27 @@ McCourt School of Public Policy, Georgetown University
 
 Strings are stored as text, and cannot be added, subtracted, etc.
 
-Example variable: make
+Example variable: `make`
 
 
 * browse dataset
-* Contrast string variable make with labeled numeric variable, foreign
+* Contrast string variable `make` with labeled numeric variable, `foreign`
 * Strings are red, labeled numeric are blue
 * For strings, the actual value is text. 
 * For labeled numeric, the actual value is a number
 
->describe
+```
+sysuse auto, clear
+describe
+```
 
 * Look at storage type column
-* Anything that begins with str is a string
+* Anything that begins with `str` is a string
 * Anything else is a number, including byte, int, float, long, double.
 
 >summarize
 
-* String variables are not included in summary statistics, because it is not 
-* possible to perform calculations on them. 
+* String variables are not included in summary statistics, because it is not  possible to perform calculations on them. 
 
 * We will cover string variables in more depth. 
 * For now, just know what they are and how to identify them.
@@ -43,11 +45,12 @@ Example variable: make
 Sometimes not every observation has a value for every variable.
 In survey data, this could arise if people skip a question.
 
-We will talk more about missing data in semester 2. For now, you should just 
+We will talk more about missing data in Quant 2. For now, you should just 
 know that missing data exists and what it looks like in Stata.
 
 In Excel, missing data is represented simply as a blank cell.
-In Stata, missing data for numeric variables is represented by a period or dot .
+In Stata, missing data for numeric variables is represented by a period or dot 
+`.`
 In Stata, missing data for string variables is represented by an empty string `
 
 Missing data is not included in calculations for summary statistics 
@@ -82,48 +85,55 @@ Missing data is not included in calculations for summary statistics
 
 
 ### For example, 
-1. let's look at the industry variable in a dataset.	
 
-    >clear
+Let's look at the industry variable in a dataset.	
+```
+clear
+sysuse nlsw88.dta
+```
 
-    >sysuse nlsw88.dta
-2. Browsing the data, we see BLUE text that indicates labels - click on the observations and you see that each industry is assigned a number. For example, `agriculture/fisheries` is coded as `1`. This type of data is a `CATEGORICAL` variable.
+Browsing the data, we see BLUE text that indicates labels - click on the observations and you see that each industry is assigned a number. For example, `agriculture/fisheries` is coded as `1`. This type of data is a `CATEGORICAL` variable.
+```
+summarize industry
+```
 
-    >summarize industry
-3. Results from summarize are not meaningful - we can't have a mean or standard deviation for categories! (Don't report mean and st.dev. for categorical variables)
-4. We can learn more about the industry variable with `tabulate` (abbrv. `tab`)
+Results from summarize are not meaningful - we can't have a mean or standard deviation for categories! (Don't report mean and st.dev. for categorical variables)
 
-    >tabulate industry
+We can learn more about the industry variable with `tabulate` (abbrv. `tab`)
+```
+tabulate industry
+tabulate industry, nolabel
+```
 
-    >tabulate industry, nolabel
-5. Tabulate shows counts of observations - we can also get that info using the command `count`
+Tabulate shows counts of observations - we can also get that info using the command `count`
+```
+count if industry==1
+count if industry==2
+count if industry==3
+count if industry==4
+```
 
-    >count if industry==1
+Tabulate gives us the distribution of the industry variable. The same data can be displayed graphically:
+```
+histogram industry, discrete
+```
 
-    >count if industry==2
+If you want to see tabulate and label information in one place, `codebook` is useful.
+```
+codebook industry, tabulate(12)
+```
 
-    >count if industry==3
-
-    >count if industry==4
-6. Tabulate gives us the distribution of the industry variable. The same data can be displayed graphically:
-
-    histogram industry, discrete
-7. If you want to see tabulate and label information in one place, `codebook` is useful.
-
-    >codebook industry, tabulate(12)
-8. Summary statistics can be reported for each category - you have to stratify or segment your categories to get useful stats.
-
-    >summarize wage hours if industry==1 
-
-    >summarize wage hours if industry==2
-
-    >summarize wage hours if industry==3 
-
-    >summarize wage hours if industry==4 
-	- Or, a faster way:
-
-    >tabstat wage hours, statistics(mean sd count) by(industry)
-
+Summary statistics can be reported for each category - you have to stratify or segment your categories to get useful stats.
+```
+summarize wage hours if industry==1 
+summarize wage hours if industry==2
+summarize wage hours if industry==3 
+summarize wage hours if industry==4 
+```
+Or, a faster way:
+```
+tabstat wage hours, statistics(mean sd count) by(industry)
+```
 We will spend more time with tabstat later  
 
 
@@ -142,29 +152,27 @@ We will spend more time with tabstat later
 * for non-married people, aka single people, the value of the `married` variable is `0`
 
 * We can use binary variables just like other categorical variables:
-
-    >tabulate married 
-    >tabulate married, nolabel
-    >count if married==1
-    >count if married==0
-
-    >codebook married
-
-    >summarize wage hours if married==0 
-    >summarize wage hours if married==1
-    >tabstat wage hours, statistics(mean sd count) by(married)
-
+```
+tabulate married 
+tabulate married, nolabel
+count if married==1
+count if married==0
+codebook married
+summarize wage hours if married==0 
+summarize wage hours if married==1
+tabstat wage hours, statistics(mean sd count) by(married)
+```
 * But, the numeric value is ALSO meaningful with binary variables!
-
-    >summarize married
-
+```
+summarize married
+```
 * 64.2% of the people in this data set are married.
 
 * To see this another way:
-
-    >tab married
-    >display 1442/2246
-
+```
+tab married
+display 1442/2246
+```
 
 
 ## *** Sample Questions ***
