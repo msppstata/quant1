@@ -6,7 +6,6 @@ McCourt School of Public Policy, Georgetown University
  - File types: `.dta`, `.do`, `.log`
  - Working in do-files / comments
 
-
 ## Variables vs. Observations
 
 
@@ -17,22 +16,21 @@ McCourt School of Public Policy, Georgetown University
   - Type `sysuse auto` in the command panel. `sysuse` is a way to use shipped datasets.
 	- Or, using drop-down menus: `File > example data sets > auto.dta`
 
-
 - Main Stata Window(s):
 ![Stata Window](figures/1-1.png)
-     - Results window: Shows commands entered after a `.` and the resulting output.
-     - Variables window: Shows variable names and descriptions / labels. 
+
+
+- Results window: Shows commands entered after a `.` and the resulting output.
+- Variables window: Shows variable names and descriptions / labels. 
          Click a variable name to enter it into the command line. 
          Will be empty if no data is loaded.
-     - Review window: Shows previous commands. Click a previous command to enter it into the command line.
-     - Command line window: type in commands here and hit 'enter' to execute.
+- Review window: Shows previous commands. Click a previous command to enter it into the command line.
+- Command line window: type in commands here and hit 'enter' to execute.
          More on this below.
-   - Some windows may not appear or are floating on Mac computers in earlier versions of Stata. 
-         To show/hide these, use the drop-down menu: `Window> Command/Results/Review/Variables `
+- Some windows may not appear or are floating on Mac computers in earlier versions of Stata. To show/hide these, use the drop-down menu: `Window> Command/Results/Review/Variables `
 
 
-
-* Open browse window 
+### Open browse window 
   * using command line: `browse`
   * using icon (looks like a mini-spreadsheet grid with a little magnifying glass, grid with pencil icon will open the browser in edit mode to change, add, or delete data) or using drop-down menus:
   
@@ -47,9 +45,15 @@ McCourt School of Public Policy, Georgetown University
 	- browse a subset of observations using filter icon
 
 
-
 ## Basic Commands to Explore the Data Set
 
+* `describe`
+* `summarize`
+* `list`
+* `display`
+* `count`
+
+---------------
 
 * `describe`: 
    from drop-down menu: data > describe data > describe data in memory
@@ -75,8 +79,6 @@ This is espeically useful for extremely large data sets where seeing all variabl
    - Counts the number of observations satisfying specified conditions in `if` box. (if no conditions specified, the command counts the total number of observations in your dataset).
 
 
-
-
 ## Drop-down menus vs. command line
  
  - Every command issued through the drop-down menu can also be issued as
@@ -97,13 +99,13 @@ This is espeically useful for extremely large data sets where seeing all variabl
          after the command separated by a space
 - For example type `sum mpg price` and hit enter to summarize only the mpg and price variables.
    
-   
+
  - Note that:
 	- commands and variable names are case sensitive
 	- tab-completion of variable names
 	- variables can be entered by clicking in variable window
 	- Page-up cycles through old commands
-	
+
 
 ## Wroking in a do-file
 
@@ -113,6 +115,7 @@ This is espeically useful for extremely large data sets where seeing all variabl
 ### Do-file editor
 * Start by clicking the Do-file Editor button, or by typing `doedit` in the command window and pressing Enter.
 * Do-file editor has syntax highlighting function. Try copying the following code to a code editor:
+
 ```
 * An example do-file
 sysuse auto
@@ -120,10 +123,23 @@ gen gp100=100/mpg
 label var gp100m "Gallons per 100 miles"
 reg gp100m weight foreignn
 ```
+
 ![do-file editor](figures/1-do-file-editor.png)
 
 * Execute codes by clicking on the `Do` button. What's wrong? Try clicking the `Do` button again and see result.
 * Correct codes and click the `Do` button again
+
+Always work in a do-file because:
+  - Professors will require it
+  - Helps you stay organized
+  - Helps you recover from mistakes
+        - Is a way of saving your work
+  - Saves you typing
+
+ Comments can help you stay organized
+  - Comments are text in your do-file that are not executed by Stata.
+  - Comment lines begin with `*`
+        - Comment sections (multiple lines) begin with `/*` and end with `*/`
 
 ## Running commands on a subset of observations
 
@@ -147,8 +163,7 @@ A double equal sign `==` is used for equality testing. A single equal sign will 
     Type `summarize price weight if mpg > 20` and hit enter. 
 Notice that there are fewer observations included.
 
--To specify multiple conditions for a command, use the logical operators `&` for AND (must meet both
-         condition) and `|` (shift+\) for OR (must meet either one of the conditions).
+-To specify multiple conditions for a command, use the logical operators `&` for AND (must meet both condition) and `|` (shift+\) for OR (must meet either one of the conditions).
 
 - For example to summarize the price and weight variables for only observations with mpg greater than 20 AND that are foreign:
 
@@ -157,8 +172,6 @@ Type `summarize price weight if mpg > 20 & foreign == 1` and hit enter.
 - Example 2, to summarize the price and weight variables for only observations that EITHER have mpg greater than 20 OR that are foreign:
 
 Type `summarize price weight if mpg > 20 | foreign == 1` and hit enter.
-
-
 
 ##  In-Class Activity 1
 Open the `auto.dta` data set and issue the `describe` and `summarize` commands from above. 
@@ -171,8 +184,6 @@ Questions using the auto.dta example dataset:
  3. What is the difference between the highest and lowest mpg?
  4. Summarize price, mpg, weight, and length for cars costing less than $4,000
  5. List the make and price of the most expensive car
-
-
 
 
 ### Result should be something like this:
@@ -196,58 +207,23 @@ summarize price mpg weight length if price < 4000
 list make price if price == 15906
 ```
 
-
-
 ## Stata File Types
 
 
 
 - `.DTA`
- You've already encountered the Stata dataset, .dta file type.
+ You've already encountered the Stata dataset, `.dta` file type.
 
 - `.DO`
- Next is the do-file: holds a list of commands that are executed as if you typed them into the command line one-by-one, .do file type.
-
- Open a do-file using the drop down menu `(Window > Do File Editor > New Do-File Editor)`: 
- 
- Input commands from above
- 
- Various methods to execute code from a do-file:
- 	- entire file, just click execute (do) or highlighted portions, highlight line(s) and click execute (do)
-		note: partially highlighted lines are executed as entire lines
-	- Execute entire file with intentional error e.g. `stop` typed on a line for debuggind purposes
-	- do button or ctrl-d
-
- Always work in a do-file because:
- 	- Professors will require it
-	- Helps you stay organized
-	- Helps you recover from mistakes
-        - Is a way of saving your work
-	- Saves you typing
-
- Comments can help you stay organized
- 	- Comments are text in your do-file that are not executed by Stata.
-	- Comment lines begin with `*`
-        - Commen sections (multiple lines) begin with `/*` and end with `*/`
+Do-file: holds a list of commands that are executed as if you typed them into the command line one-by-one, .do file type.
 
 - `.LOG` 
  Log files copy everything that is printed in the results window. 
  There are several reasons why you might want to use a log file:
  	- you want a record of commands and output from a Stata session
-	- your instructor may request a log file to be submitted 
+	- your instructor may request a `.log` file to be submitted 
 
- There are two types of log files:
- 	`.log` is a text file that can be opened with many programs, Word, Notepad, etc.
-	`.smcl` is a special Stata format that can only be opened with Stata.
-	`.smcl` formats output just as it appears in results window, while `.log` is plain text.
- If you are submitting a log file with an assignment, always use `.log`
-
- Logs begin recording when they are opened/started, and stop recording when they are closed.
-    Start recording a log file using the drop-down menu (File > Log > Begin...).
-    Stop recording a log file using the drop-down menu (File > Log > Close).
-
-
-
+(More next week)
 
 ## After-Class Exercises using the `lifeexp.dta` example dataset:
 
@@ -266,16 +242,13 @@ Run the do-file once to record output.
 Close the log.
 For problem sets, students should submit do-file and log.
 
+-----------------
+
 1. How many variables are there? How many variables are string vs. numeric variables?
 2. How many observations are there? 
 3. Are any variables missing data for observations? 
    If so, what are they and how many observations have missing data for each?
 4. What is the difference between the country with the greatest and least life expectancy?
-
-We can go over the answers at the beginning of our session next week if there is interest
-
-
-
 
 ## Getting Started Guides
 

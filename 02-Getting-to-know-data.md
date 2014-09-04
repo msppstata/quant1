@@ -188,7 +188,8 @@ Document questions and answers with comments.
 ```
 clear
 sysuse nlsw88.dta
-* 1. Report appropriate summary statistics for the following variables: age, race, grade, collgrad, union 
+* 1. Report appropriate summary statistics for the following variables: 
+age, race, grade, collgrad, union 
 
 summarize age grade collgrad union
 
@@ -234,10 +235,15 @@ Two ways:
 
 ## Log File 
  - Stata can record your session into a file colled a log file but does not start a log automatically; you must tell Stata to record your session.
- - Close log file and look at output before moving on to after class exercise.
- - For eaiser review, select `.log` format.
 
+- There are two types of log files:
+    * `.log` is a text file that can be opened with many programs, Word, Notepad, etc.(Recommended)
+    * `.smcl` is a special Stata format that can only be opened with Stata. `.smcl` formats output just as it appears in results window, while `.log` is plain text.
+    * If you are submitting a log file with an assignment, always use `.log`
 
+ Logs begin recording when they are opened/started, and stop recording when they are closed.
+    Start recording a log file using the drop-down menu (File > Log > Begin...).
+    Stop recording a log file using the drop-down menu (File > Log > Close).
 
 
 
