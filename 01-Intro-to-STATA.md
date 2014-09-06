@@ -6,17 +6,9 @@ McCourt School of Public Policy, Georgetown University
  - File types: `.dta`, `.do`, `.log`
  - Working in do-files / comments
 
-## Variables vs. Observations
-
-
+## Main Stata Window(s):
 - Open Stata by clicking icon
 
-
-- Open example data set, `auto.dta`, 
-  - Type `sysuse auto` in the command panel. `sysuse` is a way to use shipped datasets.
-	- Or, using drop-down menus: `File > example data sets > auto.dta`
-
-- Main Stata Window(s):
 ![Stata Window](figures/1-1.png)
 
 
@@ -29,12 +21,17 @@ McCourt School of Public Policy, Georgetown University
          More on this below.
 - Some windows may not appear or are floating on Mac computers in earlier versions of Stata. To show/hide these, use the drop-down menu: `Window> Command/Results/Review/Variables `
 
+## Variables vs. Observations
+- Open example data set, `auto.dta`, 
+  - Type `sysuse auto` in the command panel. `sysuse` can use shipped datasets.
+  - Or, using drop-down menus: `File > example data sets > auto.dta`
 
 ### Open browse window 
   * using command line: `browse`
   * using icon (looks like a mini-spreadsheet grid with a little magnifying glass, grid with pencil icon will open the browser in edit mode to change, add, or delete data) or using drop-down menus:
   
   ![browse](figures/1-Browser.png)
+  
   * - file > data > data editor > data editor (browse)
 
 * Variables are columns across the top and observations are the rows down the side.
