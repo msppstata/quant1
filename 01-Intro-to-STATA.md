@@ -42,7 +42,7 @@ McCourt School of Public Policy, Georgetown University
 	- browse a subset of observations using filter icon
 
 
-## Basic Commands to Explore the Data Set
+## Basic Commands to Explore the Data Set (CaSe SenSiTive)
 
 * `describe`
 * `summarize`

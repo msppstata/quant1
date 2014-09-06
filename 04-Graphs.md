@@ -34,7 +34,7 @@ twoway connected le year
 twoway (scatter le year) (lfit le year)
 ```
 
-* know how to create these graphs using graph dialogue box (not recommanded)
+* know how to create these graphs using graph dialogue box (keep record!)
       (from drop-down menu: `Graphics>Twoway Graph (Scatter Line, etc.)`)
   * Select `Create` to create a new graph:
       - `Basic plots > Scatter` for twoway scatter of selected Y and X variables.
