@@ -107,7 +107,7 @@ when using the first three commands below:
 	- variables can be entered by clicking in variable window
 	- Page-up cycles through old commands
 
-## Wroking in a do-file
+## Working in a do-file
 
 * Replication is particularly important in studies that can impact broad policy
 * Specificlly, data and computer code (i.e. do-file) should be available.
