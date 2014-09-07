@@ -23,7 +23,7 @@ McCourt School of Public Policy, Georgetown University
 
 ## Variables vs. Observations
 - Open example data set, `auto.dta`, 
-  - Type `sysuse auto` in the command panel. `sysuse` can use shipped datasets.
+  - Type `sysuse auto` in the command panel. `sysuse` can use shipped (included) datasets.
   - Or, using drop-down menus: `File > example data sets > auto.dta`
 
 ### Open browse window 
@@ -43,7 +43,9 @@ McCourt School of Public Policy, Georgetown University
 
 
 ## Basic Commands to Explore the Data Set (CaSe SenSiTive)
-
+when using the first three commands below:
+	-just enter the command to refer to all variables in the dataset
+	- enter the command followed by the space ' ' separated name of eachthe variables you wish to see
 * `describe`
 * `summarize`
 * `list`
@@ -54,7 +56,12 @@ McCourt School of Public Policy, Georgetown University
 
 * `describe`: 
    from drop-down menu: data > describe data > describe data in memory
-    - For specified variables (all variables if no specific variables specified in command), lists name, description, variable type (storage type-- byte, int, and float are numeric; anything starting with `str` is a string variable), display format (how many digits before decimals are rounded), and label. 
+    - For specified variables (all variables if no specific variables specified in command) lists 
+    - 	name, 
+    - 	description, 
+    - 	variable type (storage type-- byte, int, and float are numeric; anything starting with `str` is a string variable),
+    - 	display format (how many digits before decimals are rounded), 
+    - 	and label. 
     - If run for all variables, also lists the number of observations, number of variables, and information about the data file.
 
 * `summarize`: 
@@ -64,9 +71,6 @@ McCourt School of Public Policy, Georgetown University
 
 * `list`: from drop-down menu: data > describe data > list data
    - Displays the value of specified variables (or all if none specifically selected) for each observation meeting conditions specified in `if` box.
-
-* For `describe,` `summarize,` and `list` you can specify one or more variables to run the command on by listing their names in the variables line separated by a space ` `, rather than running the command for all variables by leaving the line blank.
-This is espeically useful for extremely large data sets where seeing all variables would be cumbersome
 
 * `display`: from drop-down menu: `data > other utilities > hand calculator`
   - Performs basic athrimatic calcluations. Can use standard operators: 
@@ -103,7 +107,6 @@ This is espeically useful for extremely large data sets where seeing all variabl
 	- variables can be entered by clicking in variable window
 	- Page-up cycles through old commands
 
-
 ## Wroking in a do-file
 
 * Replication is particularly important in studies that can impact broad policy
@@ -131,14 +134,15 @@ Always work in a do-file because:
 - Professors will require it
 - Helps you stay organized
 - Helps you recover from mistakes
-    - Is a way of saving your work
-- Saves you typing
+- Is a way of saving your work
+- Allows you to move your work
 
 Comments can help you stay organized
-
 - Comments are text in your do-file that are not executed by Stata.
 - Comment lines begin with `*`
 - Comment sections (multiple lines) begin with `/*` and end with `*/`
+- COMMENTS ARE IMPORTANT
+
 
 ## Stata File Types
 
@@ -222,8 +226,6 @@ summarize price mpg weight length if price < 4000
 * 5. List the make and price of the most expensive car
 list make price if price == 15906
 ```
-
-
 
 ## After-Class Exercises using the `lifeexp.dta` example dataset:
 
