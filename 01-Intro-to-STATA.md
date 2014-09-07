@@ -127,16 +127,34 @@ reg gp100m weight foreignn
 * Correct codes and click the `Do` button again
 
 Always work in a do-file because:
-  - Professors will require it
-  - Helps you stay organized
-  - Helps you recover from mistakes
-        - Is a way of saving your work
-  - Saves you typing
 
- Comments can help you stay organized
-  - Comments are text in your do-file that are not executed by Stata.
-  - Comment lines begin with `*`
-        - Comment sections (multiple lines) begin with `/*` and end with `*/`
+- Professors will require it
+- Helps you stay organized
+- Helps you recover from mistakes
+    - Is a way of saving your work
+- Saves you typing
+
+Comments can help you stay organized
+
+- Comments are text in your do-file that are not executed by Stata.
+- Comment lines begin with `*`
+- Comment sections (multiple lines) begin with `/*` and end with `*/`
+
+## Stata File Types
+
+- `.DTA`
+ You've already encountered the Stata dataset, `.dta` file type.
+
+- `.DO`
+Do-file: holds a list of commands that are executed as if you typed them into the command line one-by-one, .do file type.
+
+- `.LOG` 
+ Log files copy everything that is printed in the results window. 
+ There are several reasons why you might want to use a log file:
+  - you want a record of commands and output from a Stata session
+  - your instructor may request a `.log` file to be submitted 
+
+(More next week)
 
 ## Running commands on a subset of observations
 
@@ -176,6 +194,7 @@ Open the `auto.dta` data set and issue the `describe` and `summarize` commands f
 Try to answer the questions below.
 
 Questions using the auto.dta example dataset: 
+
  1. describe all variables 
  2. summarize price mpg weight and length  
  3. What is the difference between the highest and lowest mpg?
@@ -204,23 +223,7 @@ summarize price mpg weight length if price < 4000
 list make price if price == 15906
 ```
 
-## Stata File Types
 
-
-
-- `.DTA`
- You've already encountered the Stata dataset, `.dta` file type.
-
-- `.DO`
-Do-file: holds a list of commands that are executed as if you typed them into the command line one-by-one, .do file type.
-
-- `.LOG` 
- Log files copy everything that is printed in the results window. 
- There are several reasons why you might want to use a log file:
- 	- you want a record of commands and output from a Stata session
-	- your instructor may request a `.log` file to be submitted 
-
-(More next week)
 
 ## After-Class Exercises using the `lifeexp.dta` example dataset:
 
