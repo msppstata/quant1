@@ -8,7 +8,11 @@ McCourt School of Public Policy, Georgetown University
 
 ## Often the fastest answer is the one you find yourself
 
-- It's important to try to answer your own questions first
+- It's important to try to answer your own questions first using resources such as:
+	- Stata help files
+	- www.statalist.org
+	- Google
+
 - If the answer to your question is in the help file or the top hit on Google, the answer to your question will be, "Read the documentation" or ["Google it"](http://bit.ly/YcP0TF)
 
 ## Help Files:
@@ -65,8 +69,7 @@ When you ask other people for help, you’ll get the most useful advice if you k
 A minimal reproducible example consists of the following items :
 - A minimal dataset, necessary to reproduce the error
 - The minimal (runnable) code necessary to reproduce the error, which can be run on the given dataset.
-- The necessary information on the STATA version and system it is run on.
-- In case of random processes, a seed (set by `set seed`) for reproducibility
+- The necessary information on the Stata version and system it is run on.
 
 ### Example
 #### Provide a minimal dataset
@@ -91,13 +94,3 @@ count if rep78=.
 - Click `About Stata ...`
 ![Stata Version](figures/3-version.png)
 
-#### Set seed
-- Everyone can get reproducible result by setting seed.
-```
-dis rnormal(2,1)
-dis rnormal(2,1)
-
-set seed 123
-dis rnormal(2,1)
-* 4.0861899
-```
