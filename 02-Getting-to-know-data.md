@@ -130,12 +130,6 @@ summarize wage hours if industry==2
 summarize wage hours if industry==3 
 summarize wage hours if industry==4 
 ```
-Or, a faster way:
-```
-tabstat wage hours, statistics(mean sd count) by(industry)
-```
-We will spend more time with tabstat later  
-
 
 
 ## Binary Variables
@@ -160,7 +154,6 @@ count if married==0
 codebook married
 summarize wage hours if married==0 
 summarize wage hours if married==1
-tabstat wage hours, statistics(mean sd count) by(married)
 ```
 * But, the numeric value is ALSO meaningful with binary variables!
 ```
@@ -264,7 +257,6 @@ Two ways:
     What is the median age of that region?
  7. Are there any string variables in this data set? 
  	If so, which variables? 
- 8. Use tabstat to show the total number of marriages and divorces for each region. 
 
 
 #### After Class Exercise Answer
@@ -296,7 +288,10 @@ list state if region==3
 ```
 6. Which region has the highest average median age? What is the median age of that region?
 ```
-tabstat medage, by(region)
+sum medage if region==1
+sum medage if region==2
+sum medage if region==3
+sum medage if region==4
 ```
 	Ans: NE , 31.2333 years
 7. Are there any string variables in this data set? If so, which variables? 
@@ -304,7 +299,4 @@ tabstat medage, by(region)
 describe
 ```
 	Ans: Yes, state and state2
-8. Use tabstat to show the total number of marriages and divorces for each region. 
-```
-tabstat marriage divorce, statistics(sum) by(region)
-```
+

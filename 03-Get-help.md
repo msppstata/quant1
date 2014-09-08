@@ -32,12 +32,16 @@ help count
 * Explain new syntax elements: varname, options (skip `weights`)
 * For more in depth description and examples, go to manual entry with `Also See`
 
-* Look at another help page: tabstat
+* Look at another help page: list
 ```
-help tabstat
+help list 
 ```
 * Explain varname vs. varlist
-* Go through examples on tabstat help page
+* Go through examples on list help page
+* Show example from manual: Getting Started Guide
+	* GSW 10: Listing data and basic command syntax
+* More advanced examples in User Guide
+	* U 11: Language syntax
 
 * Most help pages are easy to find by guessing the command name and `See Also`
 * But there are a few that are worth remembering:
