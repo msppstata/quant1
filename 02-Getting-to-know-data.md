@@ -168,46 +168,6 @@ display 1442/2246
 ```
 
 
-## In Class Activity 1
-
-Create a do-file to answer the questions below.
-Document questions and answers with comments.
-
- 1. Report appropriate summary statistics for the following variables:
-	 age, race, grade, collgrad, union 
- 2. What is the most common industry for workers in this sample?
- 3. What is the average wage for that industry? 
-
-```
-clear
-sysuse nlsw88.dta
-* 1. Report appropriate summary statistics for the following variables: 
-age, race, grade, collgrad, union 
-
-summarize age grade collgrad union
-
-* We can't summarize race - mean and sd don't mean anything!
-
-tabulate race
-tabulate collgrad
-tabulate union
-
-* We can tabulate the categorical and binary variables.
-* 2. What is the most common industry for workers in this sample?
-
-tabulate industry
-
-* Ans: Professional Services 
-
-* 3.What is the average hourly wage for that industry? 
-
-tabulate industry, nolabel
-summarize wage if industry==11
-
-* Ans: $7.87 per hour
-```
-
-
 ## Reporting Results
 
 Professors have different requirements for reporting answers.
@@ -238,9 +198,51 @@ Two ways:
     Start recording a log file using the drop-down menu (File > Log > Begin...).
     Stop recording a log file using the drop-down menu (File > Log > Close).
 
+## In Class Activity 1
+
+Create a do-file with `nlsw88.dta` to answer the questions below.
+
+Create a `do-file` and `log-file` showing your work.
+
+Document questions and answers with comments.
+
+ 1. Report appropriate summary statistics for the following variables:
+   age, race, grade, collgrad, union 
+ 2. What is the most common industry for workers in this sample?
+ 3. What is the average wage for that industry? 
 
 
-## After Class Exercise 
+
+```
+clear
+sysuse nlsw88.dta
+* 1. Report appropriate summary statistics for the following variables: 
+age, race, grade, collgrad, union 
+
+summarize age grade collgrad union
+
+* We can't summarize race - mean and sd don't mean anything!
+
+tabulate race
+tabulate collgrad
+tabulate union
+
+* We can tabulate the categorical and binary variables.
+* 2. What is the most common industry for workers in this sample?
+
+tabulate industry
+
+* Ans: Professional Services 
+
+* 3.What is the average hourly wage for that industry? 
+
+tabulate industry, nolabel
+summarize wage if industry==11
+
+* Ans: $7.87 per hour
+```
+
+## In Class Activity 2
  Answer the questions below using the `census.dta` data sets.
  
  Create a `do-file` and `log-file` showing your work.
