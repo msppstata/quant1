@@ -17,9 +17,16 @@ Example variable: `make`
 
 * browse dataset
 * Contrast string variable `make` with labeled numeric variable, `foreign`
-* Strings are red, labeled numeric are blue
-* For strings, the actual value is text. 
-* For labeled numeric, the actual value is a number
+    - Example: Generate tables of frequencies with/without labels
+```
+tabulate foreign
+tabulate foreign, nolabel
+tabulate make
+tabulate make, nolabel
+```
+    * Strings are red, labeled numeric are blue
+    * For strings, the actual value is text. 
+    * For labeled numeric, the actual value is a number
 
 ```
 sysuse auto, clear
@@ -30,8 +37,9 @@ describe
 * Anything that begins with `str` is a string
 * Anything else is a number, including byte, int, float, long, double.
 
->summarize
-
+```
+summarize
+```
 * String variables are not included in summary statistics, because it is not  possible to perform calculations on them. 
 
 * We will cover string variables in more depth. 
@@ -209,9 +217,9 @@ Create a `do-file` and `log-file` showing your work.
 Document questions and answers with comments.
 
  1. Report appropriate summary statistics for the following variables:
-   age, race, grade, collgrad, union 
- 2. What is the most common industry for workers in this sample?
- 3. What is the average wage for that industry? 
+   `age`, `race`, `grade`, `collgrad`, `union` 
+ 2. What is the most common `industry` for workers in this sample?
+ 3. What is the average hourly `wage` for that `industry`? 
 
 
 
