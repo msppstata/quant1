@@ -72,6 +72,7 @@ Missing data is not included in calculations for summary statistics
 * Observations with a variable missing data have a `.` representing this when viewing them in the browser.
 
 * We can see this with the count command `count if rep78==.`
+* For string variables, missing data appears blank. Try `count if make==""`
 
 
 
@@ -94,6 +95,7 @@ sysuse nlsw88.dta
 
 Browsing the data, we see BLUE text that indicates labels - click on the observations and you see that each industry is assigned a number. For example, `agriculture/fisheries` is coded as `1`. This type of data is a `CATEGORICAL` variable.
 ```
+* WRONG
 summarize industry
 ```
 
