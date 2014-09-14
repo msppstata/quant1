@@ -17,7 +17,7 @@ Example variable: `make`
 
 * browse dataset
 * Contrast string variable `make` with labeled numeric variable, `foreign`
-    - Example: Generate tables of frequencies with/without labels
+    - Example: Generate tables of frequencies with/without labels with ', nolabel' on certain commands 
 ```
 tabulate foreign
 tabulate foreign, nolabel
@@ -44,7 +44,6 @@ summarize
 
 * We will cover string variables in more depth. 
 * For now, just know what they are and how to identify them.
-
 
 
 
@@ -85,7 +84,6 @@ Missing data is not included in calculations for summary statistics
 
 
 
-
 ## Categorical Variables
 - Numeric variable, but values has no intrinsic meaning
 - A type of discrete variable in that it takes a countable number of values.
@@ -103,7 +101,7 @@ sysuse nlsw88.dta
 
 Browsing the data, we see BLUE text that indicates labels - click on the observations and you see that each industry is assigned a number. For example, `agriculture/fisheries` is coded as `1`. This type of data is a `CATEGORICAL` variable.
 ```
-* WRONG
+* WRONG COMMAND
 summarize industry
 ```
 
@@ -112,7 +110,7 @@ Results from summarize are not meaningful - we can't have a mean or standard dev
 We can learn more about the industry variable with `tabulate` (abbrv. `tab`)
 ```
 tabulate industry
-tabulate industry, nolabel
+tab industry, nolabel
 ```
 
 Tabulate shows counts of observations - we can also get that info using the command `count`
@@ -127,11 +125,20 @@ Tabulate gives us the distribution of the industry variable. The same data can b
 ```
 histogram industry, discrete
 ```
+This graph can also be made by going to Graphics -> Histogram
+
 
 If you want to see tabulate and label information in one place, `codebook` is useful.
 ```
 codebook industry, tabulate(12)
 ```
+
+Codebook
+* For numeric data, it reports the range, percentiles, and missing values. 
+* For categorical data just calling codebook provides an example of the use
+* When calling 'codebook variable, tabulate(number)' , codebook lists the frequency and variable name and label for the number of unique values called for
+* If you do not know how many values there are, using a large number in tabulate lists all unique values.
+
 
 Summary statistics can be reported for each category - you have to stratify or segment your categories to get useful stats.
 ```
@@ -241,6 +248,8 @@ tabulate union
 * 2. What is the most common industry for workers in this sample?
 
 tabulate industry
+*or
+codebook industry, tabulate(99)
 
 * Ans: Professional Services 
 
