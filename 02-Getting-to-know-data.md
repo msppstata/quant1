@@ -280,7 +280,7 @@ summarize wage if industry==11
  	If so, which variables? 
 
 
-#### After Class Exercise Answer
+#### In Class Activity 2 Answer
 ```   
 clear
 sysuse census.dta
