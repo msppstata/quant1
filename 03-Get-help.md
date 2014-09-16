@@ -10,7 +10,9 @@ McCourt School of Public Policy, Georgetown University
 
 - It's important to try to answer your own questions first using resources such as:
 	- Stata help files
+	- Stata pdf manuals
 	- www.statalist.org
+	- Stata youtube channel: www.youtube.com/user/statacorp
 	- Google
 
 - If the answer to your question is in the help file or the top hit on Google, the answer to your question will be, "Read the documentation" or ["Google it"](http://bit.ly/YcP0TF)
@@ -20,6 +22,8 @@ McCourt School of Public Policy, Georgetown University
 - We have used several complicated commands with options and if statements.
 - You do not have to memorize these commands.
 - Every command has a help page to tell you how to use it.
+
+### Example 1: count
 ```
 help count
 ```
@@ -32,31 +36,85 @@ help count
 	* underline - shortest abbreviation
 	* blue - hyperlinks
 
-* Use `Also See` to go to help page for tabulate oneway
-* Explain new syntax elements: varname, options (skip `weights`)
-* For more in depth description and examples, go to manual entry with `Also See`
+```
+clear
+sysuse auto
+count if foreign==1
+cou   if price > 5000
+coun  in 1/5
+```
 
+### Example 2: list 
 * Look at another help page: list
 ```
 help list 
 ```
-* Explain varname vs. varlist
-* Go through examples on list help page
-* Show example from manual: Getting Started Guide
+
+* Two new elements: `[varlist]' and `[, options]'
+* Both are optional, so the command works fine without either one.
+
+* list the observations that we counted previously:
+```
+list if foreign==1
+l    if price > 5000
+li   in 1/5
+```
+
+### `varlist'
+* Follow link to `varlist' help page
+* Don't worry about factor variables and time-series operators for now
+* Examples of varlist
+```
+list make in 1/5
+list make price mpg in 1/5
+list make-mpg in 1/5
+list t* in 1/5
+```
+
+### `options`
+* a list of one or more options can follow the comma
+* you only need one comma, even if there are multiple options
+* the comma is always place after any if or in statements
+* options can be in any order
+* options can be abbreviated, just like regular commands
+* Examples of options
+```
+list make in 1/5 , noobs
+list make in 1/5 , abbrev(5)
+list make price in 1/5 , noobs divider mean(price) 
+list make if price > 10000 , sepby(foreign)
+list make price foreign if price > 10000 , sepby(foreign)
+```
+
+### Example 3: tabstat
+* notice varlist is required for this command
+`tabstat if foreign==1` results in an error 
+`tabstat price mpg weight`
+* The `by(varname)` option requires a single variable  
+`tabstat price mpg weight , by(foreign)`
+* The second option `statistics(statname [...])` is more complicated
+* Scroll down to the Options section of the help page for more info
+```
+tabstat price mpg weight , by(foreign) stats(mean sd)
+tabstat price mpg weight , by(rep78) stats(mean sd max min)
+```
+
+### For more help on reading help pages, see:
+* Pdf documentation:
 	* GSW 10: Listing data and basic command syntax
-* More advanced examples in User Guide
 	* U 11: Language syntax
+* Help pages
+	* `help language`
 
+## Leaning New Commands
 * Most help pages are easy to find by guessing the command name and `See Also`
-* But there are a few that are worth remembering:
+	* look at the `See Also` menu from the `summarize` help page
 
-	1. help contents_should_know
+* There are a few help pages that are worth remembering:
+	1. help contents
  	2. help language
  	3. help operators
-* If you forget these, they can all be found within a few clicks using menus:
-
-    Help     Contents     Basics     ...
-
+	4. help resources - includes link to Stata youtube channel
 
 ## Minimal reproducible example
 
