@@ -125,7 +125,21 @@ tabstat price mpg weight , by(rep78) stats(mean sd max min)
 	4. help resources - includes link to Stata youtube channel
 
 ### In Class Activity 1
-Generate the foll
+* Using the auto.dta data set, attempt to answer the questions below
+- 1. What is the median value of the mpg variable?
+- 2. What is the 95th percentile value of the mpg of domestic cars?
+- 3. How does one see the entirety of a long string?
+
+
+```
+sysuse auto.dta
+//* 1. What is the median value of the mpg variable?
+tabstat mpg, statistics(median)
+//- 2. What is the 95th percentile value of the mpg of domestic cars?
+tabstat mpg, by(foreign) s(p95)
+//-  3. How does one see the entirety of a long string?
+help strllist (find through help or help guide)
+```
 
 
 
