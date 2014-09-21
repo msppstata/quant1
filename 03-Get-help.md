@@ -126,6 +126,7 @@ tabstat price mpg weight , by(rep78) stats(mean sd max min)
 
 ### In Class Activity 1
 Using the auto.dta data set, attempt to answer the questions below with `tabstat` command
+
 Create a do-file with comment before and after each question.
 - 1. What is the median value of the mpg variable?
 - 2. What is the 95th percentile value of the mpg of domestic cars?
@@ -144,6 +145,8 @@ Foreign         price |   6,384.7   2,621.9     3,748    12,990     9,242
                 rep78 |   4.28571   .717137         3         5         2
 -------------------------------------------------------------------------
 ```
+
+
 
 
 ```
