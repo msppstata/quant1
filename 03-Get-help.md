@@ -59,6 +59,13 @@ list if foreign==1
 l    if price > 5000
 li   in 1/5
 ```
+* in 1/l will list all of the elements
+* l refers to the last element in the list
+* you can also list from the end of the list using the - sign
+
+```
+list in -2/l
+```
 
 ### `varlist'
 * Follow link to `varlist' help page
@@ -74,20 +81,21 @@ list t* in 1/5
 ### `options`
 * a list of one or more options can follow the comma
 * you only need one comma, even if there are multiple options
-* the comma is always place after any if or in statements
+* *remember, there are no commas between a list of variables
+* the comma is always placed after any if or in statements
 * options can be in any order
 * options can be abbreviated, just like regular commands
 * Examples of options
 ```
 list make in 1/5 , noobs
-list make in 1/5 , abbrev(5)
+list in 1/5 , abbrev(5)
 list make price in 1/5 , noobs divider mean(price) 
 list make if price > 10000 , sepby(foreign)
 list make price foreign if price > 10000 , sepby(foreign)
 ```
 
 ### Example 3: tabstat
-* notice varlist is required for this command
+* notice varlist (at least one variable) is required for this command
 `tabstat if foreign==1` results in an error 
 `tabstat price mpg weight`
 * The `by(varname)` option requires a single variable  
