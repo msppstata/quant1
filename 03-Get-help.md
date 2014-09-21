@@ -124,6 +124,11 @@ tabstat price mpg weight , by(rep78) stats(mean sd max min)
  	3. help operators
 	4. help resources - includes link to Stata youtube channel
 
+### In Class Activity 1
+Generate the foll
+
+
+
 ## Minimal reproducible example
 
 ### Why?
@@ -160,3 +165,14 @@ count if rep78=.
 - Click `About Stata ...`
 ![Stata Version](figures/3-version.png)
 
+### Challenge Questions
+* When invalid commands are put into Stata, it generates an error
+* The error message gives you an idea of what went wrong
+* Generate the following errors
+```
+varlist required
+variable _____ not found
+option by not allowed
+invalid syntax
+type mismatch
+```
