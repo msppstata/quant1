@@ -128,17 +128,31 @@ tabstat price mpg weight , by(rep78) stats(mean sd max min)
 Using the auto.dta data set, attempt to answer the questions below
 - 1. What is the median value of the mpg variable?
 - 2. What is the 95th percentile value of the mpg of domestic cars?
-- 3. How does one see the entirety of a long string?
+- 3. Challege Question: Try reproduce the following result: (Hint: use `tabstat`)
+```
+foreign      variable |      mean        sd       min       max     range
+----------------------+--------------------------------------------------
+Domestic        price |   6,072.4   3,097.1     3,291    15,906    12,615
+               weight |   3,317.1   695.364     1,800     4,840     3,040
+                  mpg |   19.8269    4.7433        12        34        22
+                rep78 |   3.02083   .837666         1         5         4
+----------------------+--------------------------------------------------
+Foreign         price |   6,384.7   2,621.9     3,748    12,990     9,242
+               weight |   2,315.9   433.003     1,760     3,420     1,660
+                  mpg |   24.7727   6.61119        14        41        27
+                rep78 |   4.28571   .717137         3         5         2
+-------------------------------------------------------------------------
+```
 
 
 ```
 sysuse auto.dta
-//* 1. What is the median value of the mpg variable?
+* 1. What is the median value of the mpg variable?
 tabstat mpg, statistics(median)
-//- 2. What is the 95th percentile value of the mpg of domestic cars?
+* 2. What is the 95th percentile value of the mpg of domestic cars?
 tabstat mpg, by(foreign) s(p95)
-//-  3. How does one see the entirety of a long string?
-help strllist (find through help or help guide)
+* 3. Challege Question: Try reproduce the following result:
+tabstat price weight mpg rep78, by(foreign) stat(mean sd min max range) nototal long col(stat) format
 ```
 
 
