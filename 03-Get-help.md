@@ -15,7 +15,7 @@ McCourt School of Public Policy, Georgetown University
 	- Stata youtube channel: www.youtube.com/user/statacorp
 	- Google
 
-- If the answer to your question is in the help file or the top hit on Google, the answer to your question will be, "Read the documentation" or ["Google it"](http://bit.ly/YcP0TF)
+- If the answer to your question is in the help file or the top hit on Google, the answer to your question will be, "Read documentation" or ["Google it"](http://bit.ly/YcP0TF)
 
 ## Help Files:
 
@@ -67,8 +67,8 @@ li   in 1/5
 list in -2/l
 ```
 
-### `varlist'
-* Follow link to `varlist' help page
+### `varlist`'`
+* Follow link to `varlist` help page
 * Don't worry about factor variables and time-series operators for now
 * Examples of varlist
 ```
@@ -81,7 +81,7 @@ list t* in 1/5
 ### `options`
 * a list of one or more options can follow the comma
 * you only need one comma, even if there are multiple options
-* *remember, there are no commas between a list of variables
+* remember, there are no commas between a list of variables
 * the comma is always placed after any if or in statements
 * options can be in any order
 * options can be abbreviated, just like regular commands
@@ -156,7 +156,8 @@ tabstat mpg, statistics(median)
 * 2. What is the 95th percentile value of the mpg of domestic cars?
 tabstat mpg, by(foreign) s(p95)
 * 3. Challege Question: Try reproduce the following result:
-tabstat price weight mpg rep78, by(foreign) stat(mean sd min max range) nototal long col(stat) format
+tabstat price weight mpg rep78, by(foreign) stat(mean sd min max range) ///
+nototal long col(stat) format
 ```
 
 
@@ -195,9 +196,10 @@ count if rep78=.
 
 #### STATA version and system
 - Click `About Stata ...`
+
 ![Stata Version](figures/3-version.png)
 
-### Challenge Questions
+### Challenge Questions (Optional)
 * When invalid commands are put into Stata, it generates an error
 * The error message gives you an idea of what went wrong
 * Generate the following errors
