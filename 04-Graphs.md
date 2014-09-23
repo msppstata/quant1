@@ -34,23 +34,28 @@ twoway connected le year
 twoway (scatter le year) (lfit le year)
 ```
 
-* know how to create these graphs using graph dialogue box (keep record!)
-      (from drop-down menu: `Graphics>Twoway Graph (Scatter Line, etc.)`)
-  * Select `Create` to create a new graph:
+* Create these graphs using graph dialogue box 
+  * from drop-down menu: `Graphics>Twoway Graph (Scatter Line, etc.)`
+
+* Now we have a generic, blank graph. We have to fill it in with plots.
+  * Select `Create` to create a new plot:
       - `Basic plots > Scatter` for twoway scatter of selected Y and X variables.
       - `Basic plots > Line` for twoway line graph.
       - `Basic plots > Connected` for twoway datapoints and line graph.
       - `Fit plots > Linear prediction` for graph of line that best `fits` the data. Shows best guess for linear trend/relationship between Y and X variables.
 
-  * Can overlay multiple graphs by creating more than one and then submitting 
-    all at once from the dialogue window.
-      - To change a graph, select it and then hit `edit` from the dialogue window.
-      - Select a graph from the dialogue window and hit `disable` to have it not appear/run.
-      - Use other tabs in the graph dialogue window to
-          - Change to which observations are included (if/in)
-          - The layout and title of the axes (Y axis/X axis)
-          - Title, Legend, etc.
-   * To clear all graphs and labels hit the reset button in the lower left of the graph dialogue window, small button with a `R` icon.
+  * When there is just one plot, we use the terms `plot` and `graph` interchangeably. 
+  * But we can also overlay multiple plots within the same graph.
+  	* `graph` is the entire window
+	* `plot` is an individual series of data
+  
+  * Modify or disable individual plots by selecting it and clicking `edit`
+    * Change the set of observations for that plot only using the (if/in) tab
+  * Modify the overall graph using the tabs on the top of the main graph window
+    * Change the set of observations for that overall graph (all plots) using the (if/in) tab
+    - The layout and title of the axes (Y axis/X axis)
+    - Title, Legend, etc.
+  * To clear all graphs and labels hit the reset button in the lower left of the graph dialogue window, small button with a `R` icon.
        
 
 * Can keep adding options to graph dialogue box until you have a long command like this:
@@ -69,7 +74,7 @@ legend(order(1 `Actual` 2 `Fitted`))
    how to specify different options for the graph such as axes titles, etc.
       - Make sure you keep the ordering of your variable names consistent when
         entering commands that overlay multiple graphs as switching the order
-        will screw up the  Y and X axes.
+        will change the Y and X axes.
 
 ```
 twoway (scatter y-var_name x-var_name) (lfit y-var_name x-var_name)
@@ -103,24 +108,35 @@ twoway (scatter y-var_name x-var_name) (lfit x-var_name y-var_name)
           * However, it is not compatible with other programs, so you will either have to copy and paste each graph one-by-one (right-click and select copy to copy it) into other programs or use the export
             function.
 
-* In graph window, select, `file>Save as` .gph for future use or editing within Stata. Export for use with other programs using `File > Save as`, export final graph as file types: .png, .tif, .wmf, .pdf, .jpg, ...
-* File type depends on how you will be using it.
+* In graph window, select, `file>Save` to save as file type .gph for future use or editing within Stata. 
+* Select `File > Save as` to export for use with other programs
+  * The graph file types you are likely to use are: emf, pdf, png
+  * File type depends on how you will be using it.
+    * Mac cannot generate .emf files (or .wmf)
 
-* Saving and exporting graphs can also be done from the do-file
+* Saving and exporting graphs can also be done from the do-file or command line
 
-```
-help graph export
-graph export `...\\MyNewGraph.pdf`, as(png) replace
-```
-
+* To save graphs in .gph format, for future editing within Stata:
 ```
 help graph save 
-graph save Graph_name `G:...\\MyNewGraph.pdf`, as(tif) replace
+graph save "...\MyNewGraph", replace
 ```
+
+* To save in different format for inclusion in problem set or paper: 
+```
+help graph export
+graph export "...\MyNewGraph", as(pdf) replace
+```
+* Note, if writing the command yourself, do not put a .suffix on your new graph name. 
+  * Stata will automatically add the correct .suffix.
+
+* Like the graph editor, it is easiest to run these commands from the drop-down menu, then copy them to your do-file. 
+	* Add the replace option, so the file will be updated if you re-run the do-file.
 
 ### Exercise I 
 
 - Use auto.dta from the Stata example datasets. 
+- Copy the commands to a do-file if you are using the graph dialogue window
 ```
 sysuse auto.dta
 ```
@@ -128,15 +144,18 @@ sysuse auto.dta
 ```
 twoway scatter price mpg
 ```
-- Impose a linear prediction fit line on the graph (along with the scatter plot).
+- Add a linear prediction fit line on the graph (along with the scatter plot).
 ```
 twoway (scatter price mpg) (lfit price mpg)
 ```
-- Title the y axis “Price in Dollars”
+- Title the y axis "Price in Dollars"
 ```
 twoway (scatter price mpg) (lfit price mpg), ytitle(Price in Dollars)
 ```
-Or use graph dialogue window.
+- Save graph as a new pdf file 
+```
+graph export "...\MyNewGraph", as(pdf) replace
+```
 
 
 ## Other Types of Graphs
@@ -240,6 +259,7 @@ help diagnostic plots
 ### Exercise II 
 
 - Use auto.dta from the Stata example datasets.
+- Paste commands into a do-file if you are using the graph dialogue window 
 ```
 sysuse auto
 ```
@@ -264,5 +284,4 @@ graph bar (mean) gear_ratio, over(foreign) bar(1, fcolor(black))
 ```
 histogram price, by (foreign)
 ```
-Or use the graph dialogue windows accessible via the drop down menu.
        
