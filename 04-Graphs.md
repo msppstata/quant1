@@ -1,4 +1,4 @@
-# Stata Recitation - Week 3 - Graphs
+# Stata Recitation - Week 4 - Graphs
 McCourt School of Public Policy, Georgetown University
 
 ## CONTENTS:
@@ -24,6 +24,7 @@ McCourt School of Public Policy, Georgetown University
 
 
 * Example from Definition section of help graph_twoway:
+
 ```
 help graph twoway
 sysuse uslifeexp2
@@ -119,13 +120,13 @@ twoway (scatter y-var_name x-var_name) (lfit x-var_name y-var_name)
 * To save graphs in .gph format, for future editing within Stata:
 ```
 help graph save 
-graph save "...\MyNewGraph", replace
+graph save ".../MyNewGraph", replace
 ```
 
 * To save in different format for inclusion in problem set or paper: 
 ```
 help graph export
-graph export "...\MyNewGraph", as(pdf) replace
+graph export ".../MyNewGraph", as(pdf) replace
 ```
 * Note, if writing the command yourself, do not put a .suffix on your new graph name. 
   * Stata will automatically add the correct .suffix.
@@ -133,30 +134,29 @@ graph export "...\MyNewGraph", as(pdf) replace
 * Like the graph editor, it is easiest to run these commands from the drop-down menu, then copy them to your do-file. 
 	* Add the replace option, so the file will be updated if you re-run the do-file.
 
-### Exercise I 
+### In Class Activity 1 
 
-- Use auto.dta from the Stata example datasets. 
-- Copy the commands to a do-file if you are using the graph dialogue window
+- Try reproduce the output with `auto.dta` from the Stata example datasets. 
+- Record the commands to a do-file with proper comments.
+- Save graph as a new pdf file.
+- You can use either command line or graphic dialog window.
+
+![In Class Activity 1](figures/03-ica1.png)
+
+
+
+
 ```
 sysuse auto.dta
-```
-- Create a scatterplot with mpg on the x axis and price on the y axis.
-```
+* 1. Create a scatterplot with mpg on the x axis and price on the y axis.
 twoway scatter price mpg
-```
-- Add a linear prediction fit line on the graph (along with the scatter plot).
-```
+* 2. Add a linear prediction fit line on the graph.
 twoway (scatter price mpg) (lfit price mpg)
-```
-- Title the y axis "Price in Dollars"
-```
+* 3. Title the y axis "Price in Dollars"
 twoway (scatter price mpg) (lfit price mpg), ytitle(Price in Dollars)
-```
-- Save graph as a new pdf file 
-```
+* 4. Save graph as a new pdf file 
 graph export "...\MyNewGraph", as(pdf) replace
 ```
-
 
 ## Other Types of Graphs
 
@@ -164,7 +164,7 @@ help graph intro
 * Also see > Manual
 * Show examples of other graphs from the manual entry
 * This gives an idea of the types of graphs that are available
-* You can find detailed information on specific graphs using `help graph graphtype` or by looking through the pdf manuals' bookmarks
+* You can find detailed information on specific graphs using [Visual overview for creating graphs](http://www.stata.com/support/faqs/graphics/gph/stata-graphs/) or by looking through the pdf manuals' bookmarks
 
 
 
@@ -225,9 +225,29 @@ histogram mpg, discrete
 * Can also experiment using graph dialogue window: 
    (from the drop-down menu: `Graphics>Histogram`)
 
+### Exercise II 
 
+- Use `auto.dta` from the Stata example datasets.
+- Paste commands into a do-file if you are using the graph dialogue window 
+- Save all graphs as `.png` format
+
+1. Create a bar graph that shows the mean gear ratio for foreign and domestic cars.
+2. Change the color of the bars to your favorite color.
+3. Create a graph of your choice using the `auto.dta`.
+
+
+```
+sysuse auto
+graph bar gear_ratio, over(foreign)
+graph bar (mean) gear_ratio, over(foreign) bar(1, fcolor(black))
+```
+
+Or, 
+- right-click on graph and select `start graph editor`
+- Then right-click on a bar and select `Rectangle Properties` to change the color of both bars.
+- Or right-click on a bar and select `Object Specific Properties` to change the color of that specific bar.
        
-#### Kernel Density 
+#### Kernel Density (For Reference)
 * A smoothed version of histogram
 * Creates a line, rather than a series of rectangles
 * Can be used as an option to histogram
@@ -243,7 +263,7 @@ kdensity volume
 ```
 ![kdensity](figures/3-kdensity-2.png)  
 
-### Diagnostic Plots 
+### Diagnostic Plots (For Reference)
 ```
 help diagnostic plots
 ```
@@ -256,32 +276,5 @@ help diagnostic plots
 
 ![qnorm](figures/3-qnorm.png)
 
-### Exercise II 
 
-- Use auto.dta from the Stata example datasets.
-- Paste commands into a do-file if you are using the graph dialogue window 
-```
-sysuse auto
-```
-- Create a bar graph that shows the mean gear ratio for foreign and domestic cars.
-```
-graph bar gear_ratio, over(foreign)
-```
-
-- Change the color of the bars to your favorite color.[for black bars]
-```
-graph bar (mean) gear_ratio, over(foreign) bar(1, fcolor(black))
-```
-
-     Or (not recommanded): right-click on graph and select `start graph editor`
-         Then right-click on a bar and select `Rectangle Properties` to change
-           the color of both bars.
-             Or right-click on a bar and select `Object Specific Properties` 
-                to change the color of that specific bar.
-
-- Create a graph of your choice using the `auto.dta`.
-     - To see & compare the distribution of price for foreign and domestic cars:
-```
-histogram price, by (foreign)
-```
        
