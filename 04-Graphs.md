@@ -155,7 +155,7 @@ twoway (scatter price mpg) (lfit price mpg)
 * 3. Title the y axis "Price in Dollars"
 twoway (scatter price mpg) (lfit price mpg), ytitle(Price in Dollars)
 * 4. Save graph as a new pdf file 
-graph export "...\MyNewGraph", as(pdf) replace
+graph export ".../MyNewGraph", as(pdf) replace
 ```
 
 ## Other Types of Graphs
