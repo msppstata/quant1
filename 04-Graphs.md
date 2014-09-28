@@ -218,6 +218,7 @@ histogram volume
 sysuse auto
 histogram mpg, discrete
 ```
+
 ![histogram plot](figures/3-histogram-2.png)  
 
 - the `, discrete` option forces stata to show each distinct value of the variable in a separate bar/bin. Useful for categorical variables or numeric variables that can only take on a certain, relatively limited number of values, i.e. years of education.
@@ -225,7 +226,7 @@ histogram mpg, discrete
 * Can also experiment using graph dialogue window: 
    (from the drop-down menu: `Graphics>Histogram`)
 
-### Exercise II 
+### In Class Activity 2 
 
 - Use `auto.dta` from the Stata example datasets.
 - Paste commands into a do-file if you are using the graph dialogue window 
