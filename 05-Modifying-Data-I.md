@@ -1,35 +1,31 @@
-# Stata Recitation - Week 4 - Modifying Data I 
+# Stata Recitation - Week 5 - Modifying Data I 
 McCourt School of Public Policy, Georgetown University
 
 ## SWBAT
 - Open and save non-system data sets
+- Work in a do-file
 - Create new variables as functions of existing variables
 - Use notes to document workflow
-- Work in a do-file
 
 Resource for Variable Creation 
-Nagler, Jonathan. 1995. ÒCoding Style and Good Computing Practices.Ó 
+Nagler, Jonathan. 1995. Coding Style and Good Computing Practices. 
 PS: Political Science and Politics 28(3): 488-492.
 
 
 ## Opening non-system data sets.
-
-- Open Stata
-- use auto.dta system data set
-- save as a new data set using drop-down menus `Desktop\recitation4\myautodata.dta`
-- Close stata 
-- Now you have a data set exactly as if it was distributed by TA online or from email.
-- Open Stata
-- Open data set 
-- You will see the `use` command in results window.
-
+- Log in to Blackboard
+- Download data set: auto-week5.dta
+- Move it to a folder on your desktop: week5
+- Open Stata with the program icon
+- Change working directory to the week5 folder using File >> Change Working Directory
+- Notice `cd` command printed in results window
 
 
 ##  Basic variable creation command: Generate
 * Make sure to start with an existing data set. Otherwise, there are no observations to assign a value to!
 ```
 clear
-sysuse auto
+use auto-week5.dta
 generate x1 = 1
 * list first 10 observations
 list if _n<=10
@@ -63,7 +59,9 @@ replace y = x1 + x2
 * You can do this easily, if you are working in a do-file.
 
 ### A note on drop (DANGER):
-You can use the command `drop` to remove variables from your dataset. However, this should be done RARELY and will likely NEVER be in your do file. If at all possible, fix the mistake in your do-file instead and rerun all your commands.
+* You can use the command `drop` to remove variables from your dataset. 
+* However, it is bad practice to use `drop` when you need to recreate a variable. 
+* Instead, fix the mistake in your do-file and rerun all your commands.
 ```
 gen testdrop
 drop testdrop
@@ -89,22 +87,50 @@ drop testdrop
 
 * Do file should have these commands.
 ```
-use "...\\auto-r4.dta", clear
+use "auto-week5.dta", clear
 
 generate x1 = 1
 generate x2 = 2
 generate y = x1 + x2
 
 sum x1 x2 y
-save "...\\auto-r4-modified.dta", replace
+save "auto-week5-modified.dta", replace
 ```
 
 ### Re-run do file with `save` command.
 Close out of Stata.
 Reopen Stata, open do-file, run do-file.
 
+* Do-file template, with hassle-free logging of output:
 
+```
+* Set working directory
+* Note: get this command using File >> Change Working Directory
+cd "C:\Users\myusername\..."
 
+* If any log file is open, close it
+capture: log close
+* Start a new log file, replacing any previous versions 
+log using "mylogfile.txt" , text replace
+
+* Don't display -more- in results window (optional)
+set more off
+
+* Clear any changes that have been made to the data in memory 
+clear
+* open fresh version of source data
+use "mysourcedata.dta" 
+
+* Stata commands * 
+
+* Save new data set with changes made by this do-file 
+* replace any previous version, keeping only the most up-to-date version
+save "myupdateddata.dta" , replace
+
+* Close log
+log close
+
+```
 
 # Operators and Functions
 - Add variable creation commands to do-file before the save command.
@@ -121,7 +147,9 @@ generate mpgsq = mpg^2
 browse mpg mpgsq
 sum mpg mpgsq
 ```
-* You can also do more complex operations with functions
+
+
+- You can also do more complex operations with functions
 ```
 help functions 
 
@@ -135,15 +163,103 @@ generate int_headroom = round(headroom)
 ```
 generate z1 = log(mpg* turn) + sqrt(abs(x1 * gear_ratio))
 ```
-# Commenting your work
+- General rules on operators
+  - white space is helpful for legibility, but not required
+  - use parentheses when combining multiple operators 
 
+- General rules on functions
+  - Use full name, no abbreviations
+  - No space between function name and parentheses 
+  - Always use parenthesis, even if there are no arguments
+    - `gen u = runiform()`
+  - The terms in the parenthesis are called "arguments"
+  - Arguments can be variables, numbers, other functions, or combinations
+  - Separate multiple arguments with commas
+  - Spaces don't matter inside the parentheses. Use extra spaces for legibility. 
+  
+```
+gen max_1 = max( mpg , headroom , weight , turn )
+list mpg headroom weight turn max_* in 1/10 
+
+gen max_2 = max( mpg , headroom*10 , weight / 100 , turn )
+list mpg headroom weight turn max_* in 1/10 
+
+gen max_3 = max( mpg , headroom*10 , log(weight)/2 , turn )
+list mpg headroom weight turn max_* in 1/10 
+
+gen max_4 = max( 50 , 23 , 81 , 72 ) 
+list mpg headroom weight turn max_* in 1/10 
+
+gen max_5 = max( 50 , 23 , 81 , 72 , mpg , headroom*10 , weight/10 , turn ) 
+list mpg headroom weight turn max_* in 1/10 
+```
+
+
+# Commenting your work
+## What are comments?
+- Comments refer to text that is in the do-file, but ignored by Stata
+- Comments are green in the dofile editor
+- Different types of comments: `help comments`
+
+## What is the point of comments?
 - Some data transformations are self-explanatory, i.e. `logmpg = log(mpg)`
 - Most are not. 
 - Use comments to document what you are doing,
 - helpful for other people reading your code
 - helpful for yourself when you re-read your code, and have no idea what you were doing.
+- Always use more comments than you think that you need
 - Go back and comment your do-file.
 
+
+# Common Errors 
+- Generate the same variable twice
+gen x=1
+gen x=2
+x already defined
+r(110);
+
+- Replace before generate
+replace y = 3
+variable y not found
+r(111);
+
+- Invalid variable name
+gen 4score = price/mpg
+help varname
+4score invalid name
+r(198);
+
+gen score4 = price/mpg
+
+- Not a valid operator
+gen a = price \ mpg
+gen a = price / mpg
+
+
+- If the `=exp` part of the generate statement is incorrect, it is often interpreted as a variable name. 
+- The variable name may be either invalid or non existent.
+
+- Not a valid operator, no white space
+gen b = price\mpg
+gen b = price'mpg
+
+- Not a valid operator, with white space
+gen b = price ' mpg
+
+- Spelling mistake
+gen c = npg
+gen c = mpg
+
+- not specifying arguments correctly
+gen d = max(length weight trunk)
+gen d = round(length , weight)
+
+- space between function name and parentheses 
+gen d = round (turn)
+
+- Or, if a variable exists with that function name:
+gen round = 0 
+gen d = round (turn)
 
 
 ### After Class Exercise
@@ -155,7 +271,7 @@ Use a do-file to produce the output that you used to arrive at your answers.
 Use comments before and after the command to document the question you 
 are answering and the answer.
 
-When your do-file is complete, create a log to save the results.
+If you haven't already, create a log to save the results.
 
 1. Create a new variable giving the total population age 17 and younger in each state. What is the average state under population of age 17 and younger?
 2. Create a new variable giving the proportion of residents age 17 and younger in each state. Which state has the lowest proportion of population age 17 and younger? What was that proportion?
