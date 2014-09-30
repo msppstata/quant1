@@ -229,19 +229,27 @@ list mpg headroom weight turn max_* in 1/10
 ```
 
 
-# Common Errors 
+## Common Errors 
+
 - Generate the same variable twice
+```
 gen x=1
 gen x=2
 x already defined
 r(110);
+```
 
 - Replace before generate
+
+```
 replace y = 3
 variable y not found
 r(111);
+```
 
 - Invalid variable name
+
+```
 gen 4score = price/mpg
 help varname
 4score invalid name
@@ -250,37 +258,57 @@ r(198);
 gen score4 = price/mpg
 
 - Not a valid operator
+
+```
 gen a = price \ mpg
 gen a = price / mpg
-
+```
 
 - If the `=exp` part of the generate statement is incorrect, it is often interpreted as a variable name. 
 - The variable name may be either invalid or non existent.
 
 - Not a valid operator, no white space
+
+```
 gen b = price\mpg
 gen b = price'mpg
+```
 
 - Not a valid operator, with white space
+
+```
 gen b = price ' mpg
+```
 
 - Spelling mistake
+
+```
 gen c = npg
 gen c = mpg
+```
 
 - not specifying arguments correctly
+
+```
 gen d = max(length weight trunk)
 gen d = round(length , weight)
+```
 
 - space between function name and parentheses 
+
+```
 gen d = round (turn)
+```
 
 - Or, if a variable exists with that function name:
+
+```
 gen round = 0 
 gen d = round (turn)
+```
 
 
-### After Class Exercise
+## After Class Exercise
 
 Answer the following questions using the example data set: `census.dta`
 
