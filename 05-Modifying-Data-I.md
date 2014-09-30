@@ -22,70 +22,99 @@ PS: Political Science and Politics 28(3): 488-492.
 
 
 ##  Basic variable creation command: Generate
-* Make sure to start with an existing data set. Otherwise, there are no observations to assign a value to!
+- Make sure to start with an existing data set. Otherwise, there are no observations to assign a value to!
+
 ```
 clear
 use auto-week5.dta
 generate x1 = 1
 * list first 10 observations
-list if _n<=10
+list in 1/10 
 
 generate x2 = 2
-list if _n<=10
+list in 1/10 
 
 generate y = x1 + x2
-list if _n<=10
+list in 1/10 
 
 sum x1 x2 y
 ```
-* What if we changed our mind about the value of `x1`?
-* You can't generate it again:
+
+- What if we changed our mind about the value of `x1`?
+- You can't generate it again:
+
 ```
 gen x1=2
 x1 already defined
 r(110);
 ```
-* We could use the replace command:
+
+- We could use the replace command:
+
 ```
 replace x1 = -1
+list in 1/10 
 ```
-* Then we also have to replace y.
+- But then y is incorrect, so we also have to replace y.
+
 ```
 replace y = x1 + x2
+list in 1/10 
 ```
-* But this is a very bad idea.
-* Requires a lot of extra typing, error prone, no clear record.
-* The better approach is to re-create the variable correctly.
-* You can do this easily, if you are working in a do-file.
+
+- But this is a very bad idea.
+- Requires a lot of extra typing, error prone, no clear record.
+- The better approach is to re-create the variable correctly.
+- You can do this easily, if you are working in a do-file.
 
 ### A note on drop (DANGER):
-* You can use the command `drop` to remove variables from your dataset. 
-* However, it is bad practice to use `drop` when you need to recreate a variable. 
-* Instead, fix the mistake in your do-file and rerun all your commands.
+- You can use the command `drop` to remove variables from your dataset. 
+- However, it is bad practice to use `drop` when you need to recreate a variable. 
+- Instead, fix the mistake in your do-file and rerun all your commands.
+
 ```
 gen testdrop
 drop testdrop
 ```
+
 ### Exercise 
-* Create a do-file that creates x1, x2, and y.
-* Do-file should include -use- commands
-* Change the value of x1 and re-run the do-file.
-* Use the do-file to input the remaining commands for this session.
+- Create a do-file that creates x1, x2, and y.
+- Do-file should include -use- commands
+- Change the value of x1 and re-run the do-file.
+- Use the do-file to input the remaining commands for this session.
+
+
+##  Commenting your work
+###  What are comments?
+- Comments refer to text that is in the do-file, but ignored by Stata
+- Comments are green in the dofile editor
+- Different types of comments: `help comments`
+
+### What is the point of comments?
+- Some data transformations are self-explanatory, i.e. `logmpg = log(mpg)`
+- Most are not. 
+- Use comments to document what you are doing,
+- helpful for other people reading your code
+- helpful for yourself when you re-read your code, and have no idea what you were doing.
+- Always use more comments than you think that you need
+- Go back and comment your do-file.
+
 
 
 ## Saving Progress
-
 - Now we have made some changes to the data set that we want to preserve.
 - Your main product is the do-file, not the data set.
 - We save both, but the do-file is the important part.
 - You may want to turn on the `Save before do/run` option. 
+  - In Windows, this is under Edit >> Preferences in the do-file window
 - Whenever you start working on that data again, start from the do-file, not the data set.
 - Add a `save , replace` command to the end of the do-file.
 - Give saved data set a new name
 
 
 
-* Do file should have these commands.
+- Do file should have these commands.
+
 ```
 use "auto-week5.dta", clear
 
@@ -101,7 +130,7 @@ save "auto-week5-modified.dta", replace
 Close out of Stata.
 Reopen Stata, open do-file, run do-file.
 
-* Do-file template, with hassle-free logging of output:
+- Do-file template, with hassle-free logging of output:
 
 ```
 * Set working directory
@@ -134,8 +163,9 @@ log close
 
 # Operators and Functions
 - Add variable creation commands to do-file before the save command.
-* We can also create new variables from existing variables
-* A list of operators can be found here:
+- We can also create new variables from existing variables
+- A list of operators can be found here:
+
 ```
 help operators
 generate weightforlength = weight/length
@@ -149,7 +179,8 @@ sum mpg mpgsq
 ```
 
 
-- You can also do more complex operations with functions
+- You can do more complex operations with functions
+
 ```
 help functions 
 
@@ -159,10 +190,13 @@ sum mpg logmpg
 
 generate int_headroom = round(headroom)
 ```
-* Or combine functions and operators
+
+- Or combine functions and operators
+
 ```
 generate z1 = log(mpg* turn) + sqrt(abs(x1 * gear_ratio))
 ```
+
 - General rules on operators
   - white space is helpful for legibility, but not required
   - use parentheses when combining multiple operators 
@@ -193,22 +227,6 @@ list mpg headroom weight turn max_* in 1/10
 gen max_5 = max( 50 , 23 , 81 , 72 , mpg , headroom*10 , weight/10 , turn ) 
 list mpg headroom weight turn max_* in 1/10 
 ```
-
-
-# Commenting your work
-## What are comments?
-- Comments refer to text that is in the do-file, but ignored by Stata
-- Comments are green in the dofile editor
-- Different types of comments: `help comments`
-
-## What is the point of comments?
-- Some data transformations are self-explanatory, i.e. `logmpg = log(mpg)`
-- Most are not. 
-- Use comments to document what you are doing,
-- helpful for other people reading your code
-- helpful for yourself when you re-read your code, and have no idea what you were doing.
-- Always use more comments than you think that you need
-- Go back and comment your do-file.
 
 
 # Common Errors 
