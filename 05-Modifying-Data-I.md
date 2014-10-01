@@ -7,7 +7,7 @@ McCourt School of Public Policy, Georgetown University
 - Create new variables as functions of existing variables
 - Use notes to document workflow
 
-Resource for Variable Creation 
+Resource for Variable Creation - on blackboard
 Nagler, Jonathan. 1995. Coding Style and Good Computing Practices. 
 PS: Political Science and Politics 28(3): 488-492.
 
@@ -98,8 +98,6 @@ drop testdrop
 - helpful for yourself when you re-read your code, and have no idea what you were doing.
 - Always use more comments than you think that you need
 - Go back and comment your do-file.
-
-
 
 ## Saving Progress
 - Now we have made some changes to the data set that we want to preserve.
