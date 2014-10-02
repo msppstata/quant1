@@ -6,9 +6,6 @@ McCourt School of Public Policy, Georgetown University
  - Create indicator variables
  - Verify results  
 
-
-
-
 ## If statements
  - We have seen if statements in passing - now we will cover them thoroughly
  - If statements restrict commands, making them act on a portion of the data set.
@@ -41,7 +38,8 @@ list make weight length mpg if make=="Buick Riviera"
 ```
 sum weight length mpg if foreign==0 & weight>=3317 
 ```
-* Summary stats for light or short domestic cars
+* Question: Summary stats for light (weight<=3317) or short (length<=196) domestic cars.
+
 ```
 sum weight length mpg if foreign==0 & (weight<=3317 | length<=196)
 ```
@@ -56,10 +54,10 @@ tab rep78
 list make rep78 if rep78>4
 list make rep78 if rep78>999999
 ```
-* Missing values are the biggest numbers Stata can hold.
+* Missing values are the **biggest** numbers Stata can hold.
 * If you don't want to include them:
 ```
-list make rep78 if rep78>4 & rep78<.
+list make rep78 if rep78>4 & rep78!=.
 ```
 
 #### 2. Complex conditions without parentheses
@@ -85,11 +83,25 @@ describe
 
 * Any variable that has decimal values may have a hidden `.00000000001`, 
 * or some similar very small deviation that will make it not `==`
-
 * Don't use `==` with decimal valued variables
 
+## In Class Activity 1
+Using the `nlsw88` data set, attempt to answer the following questions.
+Create a `do-file` and `log-file` showing your work with proper comments.
+1. What is the average wage of nonunion white workers in professional service industry as Sales or Laborers? Is that varies by marriage status?
+2. Among those who earn second highest wage in the sample, how many of them are single?
 
-## Generating variables with if statments
+```
+*1
+bysort married : sum wage if union==0 & race==1 & industry==11 & /// 
+(occupation==3 | occupation==8)
+
+*2
+sum wage, detail
+tab married  if wage>40.19807 & wage <40.19809
+```
+
+## Generating variables with if statements
 ### Most common usage is indicator variables
 * Create an indicator for lowprice cars
 ```
@@ -194,7 +206,7 @@ replace midmpg = 1 if inrange(mpg,20,29)
 tab mpg midmpg, missing
 ```
 
-* Use recode command 
+* Use recode command (for reference)
 ```
 sysuse auto.dta, clear
 
@@ -203,4 +215,23 @@ recode mpg (0/19 =0) (20/29 =1) (30/max =0) (.=.), gen(midmpg)
 tab mpg midmpg, missing
 ```
  
+## In Class Activity 2
+Using the `nlsw88` data set, attempt to answer the following questions.
+Create a `do-file` and `log-file` showing your work with proper comments.
+1. Generate an indicator variable called `wage_indicator`. 
+    - The indicator equal `5` if the person's weekly wage is above 75 percentile (rich guys).
+    - The indicator equal `1` if the person's weekly wage is below 25 percentile (poor guys).
+    - The indicator equal `.` otherwise.
+2. What is the average hourly wage for rich guys who work in Manufacturing, Transport/Comm/Utility, or Wholesale/Retail Trade industry (Hint: Try `inlist`)?
 
+```
+*1
+gen wage_indicator=.
+gen weekly_wage=hours*wage
+sum weekly_wage, detail
+replace wage_indicator=1 if weekly_wage<r(p25)
+replace wage_indicator=5 if weekly_wage>r(p75)
+
+*2
+sum wage if inlist(industry,4,5,6) & wage_indicator==5
+```
