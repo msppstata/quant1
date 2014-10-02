@@ -254,6 +254,7 @@ help varname
 r(198);
 
 gen score4 = price/mpg
+```
 
 - Not a valid operator
 
