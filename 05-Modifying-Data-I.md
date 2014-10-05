@@ -77,7 +77,7 @@ gen testdrop
 drop testdrop
 ```
 
-### Exercise 
+# In Class Activity 1 
 - Create a do-file that creates x1, x2, and y.
 - Do-file should include -use- command
 - Change the value of x1 and re-run the do-file.
@@ -307,7 +307,7 @@ gen d = round (turn)
 ```
 
 
-## After Class Exercise
+# In Class Activity 2
 
 Answer the following questions using the example data set: `census.dta`
 
@@ -333,7 +333,7 @@ If you haven't already, create a log to save the results.
    Export graphs and insert into a Word document.
 
 
-### After Class Exercise Answer
+# In Class Activity 2 Answer
 ```
 clear
 sysuse census.dta
