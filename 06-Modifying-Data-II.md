@@ -86,8 +86,11 @@ describe
 * Don't use `==` with decimal valued variables
 
 ## In Class Activity 1
+
 Using the `nlsw88` data set, attempt to answer the following questions.
+
 Create a `do-file` and `log-file` showing your work with proper comments.
+
 1. What is the average wage of nonunion white workers in professional service industry as Sales or Laborers? Is that varies by marriage status?
 2. Among those who earn second highest wage in the sample, how many of them are single?
 
@@ -216,8 +219,11 @@ tab mpg midmpg, missing
 ```
  
 ## In Class Activity 2
+
 Using the `nlsw88` data set, attempt to answer the following questions.
+
 Create a `do-file` and `log-file` showing your work with proper comments.
+
 1. Generate an indicator variable called `wage_indicator`. 
     - The indicator equal `5` if the person's weekly wage is above 75 percentile (rich guys).
     - The indicator equal `1` if the person's weekly wage is below 25 percentile (poor guys).
