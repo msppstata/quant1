@@ -29,13 +29,13 @@ clear
 use auto-week5.dta
 generate x1 = 1
 * list first 10 observations
-list in 1/10 
+list in 1/5 
 
 generate x2 = 2
-list in 1/10 
+list in 1/5
 
 generate y = x1 + x2
-list in 1/10 
+list in 1/5 
 
 sum x1 x2 y
 ```
@@ -79,7 +79,7 @@ drop testdrop
 
 ### Exercise 
 - Create a do-file that creates x1, x2, and y.
-- Do-file should include -use- commands
+- Do-file should include -use- command
 - Change the value of x1 and re-run the do-file.
 - Use the do-file to input the remaining commands for this session.
 
@@ -106,9 +106,9 @@ drop testdrop
 - You may want to turn on the `Save before do/run` option. 
   - In Windows, this is under Edit >> Preferences in the do-file window
 - Whenever you start working on that data again, start from the do-file, not the data set.
-- Add a `save , replace` command to the end of the do-file.
+- To save the dataset, add a `save , replace` command to the end of the do-file.
 - Give saved data set a new name
-
+  - Data set will be saved into the working directory unless specified otherwise
 
 
 - Do file should have these commands.
@@ -318,7 +318,7 @@ are answering and the answer.
 
 If you haven't already, create a log to save the results.
 
-1. Create a new variable giving the total population age 17 and younger in each state. What is the average state under population of age 17 and younger?
+1. Create a new variable giving the total population age 17 and younger in each state. What is the average state population of those age 17 and younger?
 2. Create a new variable giving the proportion of residents age 17 and younger in each state. Which state has the lowest proportion of population age 17 and younger? What was that proportion?
 3. Create a new variable giving number of marriages as a proportion of total population.
    What state had the highest proportion of marriages?
