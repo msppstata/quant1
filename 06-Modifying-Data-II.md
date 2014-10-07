@@ -1,4 +1,4 @@
-# Stata Recitation - Week 5 - Modifying Data II
+# Stata Recitation - Week 6 - Modifying Data II
 McCourt School of Public Policy, Georgetown University
 
 ## Key Ideas:
