@@ -107,6 +107,7 @@ tab married  if wage>40.19807 & wage <40.19809
 ## Generating variables with if statements
 ### Most common usage is indicator variables
 * Create an indicator for lowprice cars
+
 ```
 sum price
 gen lowprice = 0
@@ -210,6 +211,7 @@ tab mpg midmpg, missing
 ```
 
 * Use recode command (for reference)
+
 ```
 sysuse auto.dta, clear
 
