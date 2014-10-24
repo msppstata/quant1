@@ -164,7 +164,8 @@ list make mpg weight length if make=="buick century"
 
 #### Example 2: Create an indicator for all Buick vehicles
   - Remember to account for missing values
-  - Missing value for string variables is an empty string, `""`
+  - Missing value for string variables is an empty string, `""`  
+
 ```
 gen buick=0
 replace buick=1 if inlist(make , "Buick Century" , "Buick Electra" , "Buick LeSabre" , "Buick Opel" , "Buick Regal" , "Buick Riviera" , "Buick Skylark")
