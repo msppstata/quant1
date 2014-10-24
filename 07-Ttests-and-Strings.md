@@ -25,6 +25,7 @@ sysuse auto
 ci weight length mpg , level(90)
 ```
 
+## Imediate command for confidence intervals
 * Syntax for cii, immediate command: `cii #obs mean sd `
 * Kind of like a calculator for CI, can use to confirm your results of computing the formula
 * Immediate commands are based on the inputs you type into the command.
@@ -34,13 +35,13 @@ ci weight length mpg , level(90)
 ### Example: Recompute 90% confidence intervals from components
 * Careful about standard error vs. standard deviation 
 * - Don't use st. err. reported by ci, instead summarize to get st. dev.
-* weight
+
 ```
+* weight
 sum weight
 cii 74 3019.459 777.1936 , level(90)
-```
+
 * length
-```
 sum length
 cii 74 187.9324 22.26634 , level(90)
 ```
@@ -74,20 +75,7 @@ ttest mpg==20
 * Alternative hypotheses for one and two-sided tests
 * P-values for each alternative hypothesis
 
-
-### Example 2: Paired test
-* Two observations from each unit of observation, e.g. person, state, car.
-```
-clear
-webuse fuel
-```
-* Assumption is that each line is a single car, tested with two types of fuel additive.
-* That is why we use the paired test.
-```
-ttest mpg1==mpg2
-```
-
-### Example 3: Unpaired, Pooled test
+### Example 2: Unpaired, Pooled test
 * Different units sampled for each group, - not paired
 * But, groups are from the same population (theoretical) - same standard deviation
 ```
@@ -96,11 +84,23 @@ webuse fuel3
 ttest mpg, by(treated)
 ```
 
-### Example 4: Unpaired, unpooled test
+### Example 3: Unpaired, unpooled test
 * Different units were sampled for each group - not paired
 * Groups may not be from the same population (theoretical) - standard deviations may be different.
 ```
 ttest mpg, by(treated) unequal
+```
+
+### Example 4: Paired test (Rarely Used)
+* Two outcomes from each unit of analysis, e.g. person, state, car.
+```
+clear
+webuse fuel
+```
+* Assumption is that each line is a single car, tested with two types of fuel additive.
+* That is why we use the paired test.
+```
+ttest mpg1==mpg2
 ```
 
 
@@ -128,25 +128,29 @@ prtest collgrad, by(union)
 
 ## PRACTICE using the `lifeexp.dta` example dataset
 ```
-sysuse lifeexp.dta, clear
+sysuse nlsw88.dta, clear
 ```
-1. Test the null hypothesis that the true value of world life expectancy is 74. What is the probability of seeing the data in this sample given that life expectancy is actually 74, with a two-tailed test?
+1. Test the null hypothesis that the true average value of wage is 7.60. What is the probability of seeing the data in this sample given that the average wage is actually 7.60, with a two-tailed test?
 ```
-ttest lexp == 74
+ttest wage == 7.60
 ```
-Ans: p-value for two sided test is 0.0037
-2. Report the 90 percent confidence interval for the measure of average annual percentage population growth. 
+  - Ans: p-value for two sided test is 0.1694
+2. Report the 90 percent confidence interval for the average value of hours. 
 ```
-ci popgrowth, level(90)
+ci hours , level(90)
 ```
-Ans: 90% confidence interval for average annual percentage population growth: 0.7837118  to  1.160406
-3. A wild hypothesis appears: What are the chances of seeing this data, using a two-tailed test, given the null hypothesis that the value of the true mean life expectancy and the true mean water safety score are the same?
+  - Ans: 90% confidence interval for the average value of hours is :  36.85289 to 37.58333
+3. Test the hypothesis that wages are equal for married and non-married respondents. Do not assume that the two groups have equal variances. 
 ```
-ttest lexp == safewater, unpaired unequal
+ttest wage , by(married) unequal 
 ```
-  - Run an unpaired ttest since the question asks you to compare the MEANS of the two groups, rather than the difference between lexp and safewater for each observation, which you would use a paired test for.
-  - Also, add the 'unequal' option for unequal variances (unpooled test) since the sample standard deviations for lexp and safewater are very different.
-  - Ans: P-value for the two-sided test is 0.1927
+  - Ans: P-value for the two-sided test is 0.0652
+
+4. Test the hypothesis that wages are equal for union and non-union workers. Assume that the two groups have equal variances. 
+```
+ttest wage , by(union) 
+```
+  - Ans: P-value for the two-sided test less than 0.001
 
 ## Strings 
  - We have seen strings, but we haven't really worked with them.
