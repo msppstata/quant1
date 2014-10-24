@@ -144,9 +144,9 @@ Ans: 90% confidence interval for average annual percentage population growth: 0.
 ```
 ttest lexp == safewater, unpaired unequal
 ```
-* Run an unpaired ttest since the question asks you to compare the MEANS of the two groups, rather than the difference between lexp and safewater for each observation, which you would use a paired test for.
-* Also, add the 'unequal' option for unequal variances (unpooled test) since the sample standard deviations for lexp and safewater are very different.
-Ans: P-value for the two-sided test is 0.1927
+  - Run an unpaired ttest since the question asks you to compare the MEANS of the two groups, rather than the difference between lexp and safewater for each observation, which you would use a paired test for.
+  - Also, add the 'unequal' option for unequal variances (unpooled test) since the sample standard deviations for lexp and safewater are very different.
+  - Ans: P-value for the two-sided test is 0.1927
 
 ## Strings 
  - We have seen strings, but we haven't really worked with them.
@@ -155,18 +155,19 @@ Ans: P-value for the two-sided test is 0.1927
 #### Example: Look at key variables for a single vehicle 
 ```
 list make mpg weight length if make=="Buick Century"
+```
 
-* Strings are case sensitive
+  - Strings are case sensitive
+```
 list make mpg weight length if make=="buick century"
 ```
 
 #### Example 2: Create an indicator for all Buick vehicles
+  - Remember to account for missing values
+  - Missing value for string variables is an empty string, `""`
 ```
 gen buick=0
 replace buick=1 if inlist(make , "Buick Century" , "Buick Electra" , "Buick LeSabre" , "Buick Opel" , "Buick Regal" , "Buick Riviera" , "Buick Skylark")
-
-* Remember to account for missing values
-* Missing value for string variables is an empty string, `""`
 replace buick=. if make==""
 
 list make mpg weight length if buick==1 
@@ -176,9 +177,9 @@ list make mpg weight length if buick==1
 ```
 help string functions
 ```
-* String functions request string inputs (s, s1, s2, etc.)
-* These can be actual strings or the names of string variables.
-* Strings should be in quotes, string variables should not be in quotes.
+- String functions request string inputs (s, s1, s2, etc.)
+- These can be actual strings or the names of string variables.
+- Strings should be in quotes, string variables should not be in quotes.
 
 #### Example: length(s)
 ```
@@ -223,17 +224,6 @@ replace buick=1 if make1=="Buick"
 help destring
 ```
 * See examples in the help file and manual.
-
-#### `Encode/decode`
-* A related but different problem: 
-* A categorical variable exists as a string and needs to be changed to a number.
-* Or the other way around.
-
-```
-help encode
-```
-* See examples in help file and manual.
-
 
 
 

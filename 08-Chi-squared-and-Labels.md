@@ -235,6 +235,16 @@ label define once_marriedlbl 1 "Once married" 0 "Never or currently married"
 label values once_married once_marriedlbl
 ```
 
+#### `Encode/decode`
+- Changing between strings and labels 
+- A categorical variable exists as a string and needs to be changed to a number.
+- Or the other way around.
+
+```
+help encode
+```
+- See examples in help file and manual.
+
 
 
 
