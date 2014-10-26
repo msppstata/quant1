@@ -126,31 +126,35 @@ prtest collgrad, by(union)
 ```
 
 
-## PRACTICE using the `lifeexp.dta` example dataset
-```
-sysuse nlsw88.dta, clear
-```
-1. Test the null hypothesis that the true average value of wage is 7.60. What is the probability of seeing the data in this sample given that the average wage is actually 7.60, with a two-tailed test?
-```
-ttest wage == 7.60
-```
-  - Ans: p-value for two sided test is 0.1694
-2. Report the 90 percent confidence interval for the average value of hours. 
-```
-ci hours , level(90)
-```
-  - Ans: 90% confidence interval for the average value of hours is :  36.85289 to 37.58333
-3. Test the hypothesis that wages are equal for married and non-married respondents. Do not assume that the two groups have equal variances. 
-```
-ttest wage , by(married) unequal 
-```
-  - Ans: P-value for the two-sided test is 0.0652
+# In Class Activity 1 
 
+PRACTICE using the `lifeexp.dta` example dataset
+1. Test the null hypothesis that the true average value of wage is 7.60. What is the probability of seeing the data in this sample given that the average wage is actually 7.60, with a two-tailed test?
+2. Report the 90 percent confidence interval for the average value of hours. 
+3. Test the hypothesis that wages are equal for married and non-married respondents. Do not assume that the two groups have equal variances. 
 4. Test the hypothesis that wages are equal for union and non-union workers. Assume that the two groups have equal variances. 
 ```
-ttest wage , by(union) 
+* Load Data
+sysuse nlsw88.dta, clear
+
+
+*1
+ttest wage == 7.60
+* Ans: p-value for two sided test is 0.1694
+
+*2
+ci hours , level(90)
+* Ans: 90% confidence interval for the average value of hours is :  36.85289 to 37.58333
+
+*3
+ttest wage , by(married) unequal 
+* Ans: P-value for the two-sided test is 0.0652
+
+*4
+ttest wage , by(union)
+*Ans: P-value for the two-sided test less than 0.001
 ```
-  - Ans: P-value for the two-sided test less than 0.001
+
 
 ## Strings 
  - We have seen strings, but we haven't really worked with them.
