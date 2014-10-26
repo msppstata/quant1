@@ -129,10 +129,12 @@ prtest collgrad, by(union)
 # In Class Activity 1 
 
 PRACTICE using the `lifeexp.dta` example dataset
+
 1. Test the null hypothesis that the true average value of wage is 7.60. What is the probability of seeing the data in this sample given that the average wage is actually 7.60, with a two-tailed test?
 2. Report the 90 percent confidence interval for the average value of hours. 
 3. Test the hypothesis that wages are equal for married and non-married respondents. Do not assume that the two groups have equal variances. 
 4. Test the hypothesis that wages are equal for union and non-union workers. Assume that the two groups have equal variances. 
+
 ```
 * Load Data
 sysuse nlsw88.dta, clear
