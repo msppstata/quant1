@@ -179,6 +179,11 @@ list make mpg weight length if make=="buick century"
 ```
 gen buick=0
 replace buick=1 if inlist(make , "Buick Century" , "Buick Electra" , "Buick LeSabre" , "Buick Opel" , "Buick Regal" , "Buick Riviera" , "Buick Skylark")
+
+* Or use regular expression (for reference)
+generate Buick=regexm(make, "^Buick")
+
+* Don't forget missing values!
 replace buick=. if make==""
 
 list make mpg weight length if buick==1 
