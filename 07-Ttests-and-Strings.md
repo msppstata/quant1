@@ -229,20 +229,61 @@ replace buick=. if make1==""
 replace buick=1 if make1=="Buick"
 ```
 
+
+# In Class Activity 2
+
+PRACTICE using the `auto.dta` example dataset
+
+1. What is the longest car(s)? What is the car(s) with the longest name?
+2. What percentage of domestic car observations are Chevrolets? 
+3. Create a new string variable Excellent_Cars that adds the word EXCELLENT to the end of cars you think are 
+   excellent.
+
+```
+* Load Data
+sysuse auto.dta, clear
+*1
+*Lincoln Continental
+//here's how i do the longest car
+*sort method - will only return one value
+sort length
+list make in -1
+
+*sum method - will return all values matching the largest value
+sum length
+list make if length == r(max)
+// and here are the cars with the longest name
+ Chev. Monte Carlo and  Linc. Continental 
+gen lengthName = length(make)
+sum lengthName
+list make if length(make) ==17
+*note that I don't have to worry about hidden decimal places as the length() funciton returns integers
+
+*2
+*so I want the number of Chevrolet cars (Chev)
+count if regexm(make, "^Chev")
+display 6/74
+
+*3
+gen Excellent_Cars = ""
+sum mpg, detail
+replace Excellent_Cars= make + " EXCELLENT" if mpg > r(p95)
+```
+
+
 ### Converting between strings and numbers
 * You probably won't need these commands until thesis, so we won't cover them  in depth at this time. Just know that they exist, and how to find help on them.
 
 #### 'Destring/tostring' 
 * Sometimes a variable is stored as a string when it should be a number.
 * This is a frequent problem after importing data from Excel.
-* In this case, you can convert the string to a number using destring.
+* You can change the data in Excel or
+* You can convert the string to a number using destring.
 
 ```
 help destring
 ```
 * See examples in the help file and manual.
-
-
 
 
 
