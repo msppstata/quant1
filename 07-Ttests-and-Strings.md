@@ -34,7 +34,7 @@ ci weight length mpg , level(90)
 
 ### Example: Recompute 90% confidence intervals from components
 * Careful about standard error vs. standard deviation 
-* - Don't use st. err. reported by ci, instead summarize to get st. dev.
+* - **Don't use st. err. reported by ci, instead summarize to get st. dev.**
 
 ```
 * weight
@@ -128,7 +128,7 @@ prtest collgrad, by(union)
 
 # In Class Activity 1 
 
-PRACTICE using the `lifeexp.dta` example dataset
+PRACTICE using the `nlsw88.dta` example dataset
 
 1. Test the null hypothesis that the true average value of wage is 7.60. What is the probability of seeing the data in this sample given that the average wage is actually 7.60, with a two-tailed test?
 2. Report the 90 percent confidence interval for the average value of hours. 
