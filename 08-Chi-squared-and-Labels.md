@@ -3,32 +3,33 @@ McCourt School of Public Policy, Georgetown University
 
 ## Key Ideas:
 - Calculate statistics based on two variables: tab2 (chi2 option), corr, pwcorr
- - Create and modify variable and value labels 
- - Search variable labels 
+- Create and modify variable and value labels 
+- Search variable labels 
 
-## REVIEW PROBLEMS using the `citytemp.dta` example dataset
+## REVIEW PROBLEMS 
+## using the `citytemp.dta` example dataset
 ```
 sysuse citytemp.dta, clear
 ```
-* Generate a dummy variable, hightempJan, that is 1 for all cities with average January temperatures above 40 degrees and 0 for all those with average temperatures of 40 degrees or less.
+- Generate a dummy variable, hightempJan, that is 1 for all cities with average January temperatures above 40 degrees and 0 for all those with average temperatures of 40 degrees or less.
 
 ```
 gen hightempjan = 0
 replace hightempjan = 1 if tempjan > 40
 replace hightempjan = . if tempjan == .
 ```
-* How many cities have high January temperatures?
+- How many cities have high January temperatures?
 
 ```
 tab hightempjan
 ```
 Ans: 353 cities
 
-* Create a bar graph showing mean cooling degree days and mean heating degree days, broken into two categories, for cities with high January temperatures and low January temperatures.
+- Create a bar graph showing mean cooling degree days and mean heating degree days, broken into two categories, for cities with high January temperatures and low January temperatures.
 ```
 graph bar (mean) heatdd (mean) cooldd, over(hightempjan)
 ```
-* How many cities are in the "West" Census region and the "Mountain" Census division?
+- How many cities are in the "West" Census region and the "Mountain" Census division?
 ```
 tab region
 tab region, nolabel
@@ -38,12 +39,11 @@ count  if region == 4 & division == 8
 ```
 Ans: 61 cities in both the "West" Census region and the "Mountain" Census division
 
-## Discrete/Categorical variables : Two-way tabulation and Pearson's chi-2 test
-
+## Discrete/Categorical Variables 
+## Two-way tabulation and Pearson's chi-2 test
 
 ### Two way tabulation
 Produce counts of number of observations in each cell of a two-way table.
-
 
 #### Examples
 ```
@@ -59,23 +59,23 @@ tab2 age married
 tab2 married age
 ```
 
-* Many different options with tab:
+- `tab2` has many options:
 ```
 help tab2 
 ```
 
-* We've seen the missing option with one-way tabulations:
+- We've seen the missing option with one-way tabulations:
 ```
 tab2 union married 
 tab2 union married , m
 ```
-* Look at total number of observations for these two tables.
-* Compare with Obs number from summarize:
+- Look at total number of observations for these two tables.
+- Compare with Obs number from summarize:
 ```
 sum married union
 ```
 
-### Important 
+### Important: Treatment of Missing Data  
 * We are moving into commands that take data from multiple variables
 * If an observation has missing data for any of the variables, that 
   observation is dropped from the calculation.
@@ -83,16 +83,15 @@ sum married union
   be possible for other commands.
 
 
-
 #### More options for tab2
-* column : Gives percentage breakdown of row category within each column.
+- column: Gives percentage breakdown of row category within each column.
 ```
 tab2 race union, column
 tab2 race if union==0
 tab2 race if union==1
 ```
 
-* row : Gives percentage breakdown of column category within each row.
+- row: Gives percentage breakdown of column category within each row.
 ```
 tab2 race union, row
 tab2 union if race==1
@@ -100,32 +99,32 @@ tab2 union if race==2
 tab2 union if race==3
 ```
 
-* cell : Gives percentage of observations in each cell. 
+- cell: Gives percentage of observations in each cell. 
 ```
 tab2 race union, cell
 ```
 
-* expected : Gives the expected number of observations in each cell based on marginal distributions of each variable
+- expected: Gives the expected number of observations in each cell based on marginal distributions of each variable
+```
+tab2 race union, expected 
+```
+- expected number of observations in the white, nonunion cell:
 ```
 tab2 race union, row column 
-```
-* expected number of observations in the white, nonunion cell:
-```
 display 0.7204*0.7545*1878
-tab2 race union, expected 
 ```
 
 ### Report Chi2 test statistic:
-* Test for independence of two categorical variables:
-* This will be covered in class, but you should know how to calculate and find test statistic.
+- Test for independence of two categorical variables:
+- This will be covered in class, but you should know how to calculate and find test statistic.
 ```
 tab2 race union, chi2
 ```
-* test statistic:  Pearson chi2(2) =  13.0814   
-* P-value: Pr = 0.001
+- Test statistic:  Pearson's chi2(2) =  13.0814   
+- P-value: Pr = 0.001
 
-* Components of chi2 test statistic can be reported using option: `cchi2`
-* Students should read through these options after learning about the Chi-2 test in class.
+- Components of chi2 test statistic can be reported using option: `cchi2`
+- Students should read through these options after learning about the Chi-2 test in class.
 
 
 ## Labels
@@ -139,6 +138,7 @@ help label
 - Show command syntax in help file
 
 - Example from previous recitation:
+
 ```
 clear
 sysuse nlsw88.dta
@@ -146,18 +146,23 @@ sysuse nlsw88.dta
 gen weekwage = wage*hours
 label variable weekwage "Ave. Weekly Pay"
 ```
+
 - Changes can also be made in the Variables Manager `Data > Variables Manager`
 - Remember to put the resulting "label" command into your do-file.
+
 ```
 generate agesq = age^2
 ```
+
 - Use the varibles manager to label, then add label to do-file.
+
 ```
 label variable agesq "Age Squared"
 ```
 
-- A very useful function when you start working with large data sets
+- A useful command when you start working with large data sets
 - `lookfor`: searches variable names and labels
+
 ```
 lookfor age
 ```
@@ -187,6 +192,7 @@ describe, short
 - Value labels are defined and exist independently of variables
 - Show value labels using describe and labelbook
 - Individual labels can be listed:
+
 ```
 label list occlbl
 ```
@@ -243,6 +249,7 @@ label values once_married once_marriedlbl
 ```
 help encode
 ```
+
 - See examples in help file and manual.
 
 
