@@ -7,10 +7,12 @@ McCourt School of Public Policy, Georgetown University
 - Search variable labels 
 
 ## REVIEW PROBLEMS 
-## using the `citytemp.dta` example dataset
+using the `citytemp.dta` example dataset
+
 ```
 sysuse citytemp.dta, clear
 ```
+
 - Generate a dummy variable, hightempJan, that is 1 for all cities with average January temperatures above 40 degrees and 0 for all those with average temperatures of 40 degrees or less.
 
 ```
@@ -18,6 +20,7 @@ gen hightempjan = 0
 replace hightempjan = 1 if tempjan > 40
 replace hightempjan = . if tempjan == .
 ```
+
 - How many cities have high January temperatures?
 
 ```
@@ -26,10 +29,13 @@ tab hightempjan
 Ans: 353 cities
 
 - Create a bar graph showing mean cooling degree days and mean heating degree days, broken into two categories, for cities with high January temperatures and low January temperatures.
+
 ```
 graph bar (mean) heatdd (mean) cooldd, over(hightempjan)
 ```
+
 - How many cities are in the "West" Census region and the "Mountain" Census division?
+
 ```
 tab region
 tab region, nolabel
@@ -37,10 +43,11 @@ tab division
 tab division, nolabel
 count  if region == 4 & division == 8
 ```
+
 Ans: 61 cities in both the "West" Census region and the "Mountain" Census division
 
 ## Discrete/Categorical Variables 
-## Two-way tabulation and Pearson's chi-2 test
+Two-way tabulation and Pearson's chi-2 test
 
 ### Two way tabulation
 Produce counts of number of observations in each cell of a two-way table.
