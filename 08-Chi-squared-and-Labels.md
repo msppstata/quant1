@@ -156,7 +156,7 @@ Use comments before and after the command to document the question you are answe
 
 ```
 *1
-ttest write, by(female)
+ttest write=50
 
 * ANS: The mean of the variable write for this particular sample of 
 * students is 52.775, which is statistically significantly different 
@@ -165,7 +165,7 @@ ttest write, by(female)
 * higher mean on the writing test than 50.
 
 *2
-ttest write=50
+ttest write, by(female)
 
 * ANS: The results indicate that there is a statistically significant 
 * difference between the mean writing score for males and females 
