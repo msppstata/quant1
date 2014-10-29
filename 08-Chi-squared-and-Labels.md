@@ -3,40 +3,51 @@ McCourt School of Public Policy, Georgetown University
 
 ## Key Ideas:
 - Calculate statistics based on two variables: tab2 (chi2 option), corr, pwcorr
- - Create and modify variable and value labels 
- - Search variable labels 
+- Create and modify variable and value labels 
+- Search variable labels 
 
-## REVIEW PROBLEMS using the `citytemp.dta` example dataset
+## In class activity 1: Review Problems 
+
+Using the `citytemp.dta` example dataset.
+
+Use a do-file to produce the output that you used to arrive at your answers.
+
+Use comments before and after the command to document the question you are answering and the answer.
+
+1. Generate a dummy variable, hightempJan, that is 1 for all cities with average January temperatures above 40 degrees and 0 for all those with average temperatures of 40 degrees or less.
+2. How many cities have high January temperatures?
+3. Create a bar graph showing mean cooling degree days and mean heating degree days, broken into two categories, for cities with high January temperatures and low January temperatures.
+4. How many cities are in the "West" Census region and the "Mountain" Census division?
+
+
 ```
 sysuse citytemp.dta, clear
-```
-* Generate a dummy variable, hightempJan, that is 1 for all cities with average January temperatures above 40 degrees and 0 for all those with average temperatures of 40 degrees or less.
 
-```
+
+*1
 gen hightempjan = 0
 replace hightempjan = 1 if tempjan > 40
 replace hightempjan = . if tempjan == .
-```
-* How many cities have high January temperatures?
 
-```
+
+*2
 tab hightempjan
-```
-Ans: 353 cities
+* Ans: 353 cities
 
-* Create a bar graph showing mean cooling degree days and mean heating degree days, broken into two categories, for cities with high January temperatures and low January temperatures.
-```
+
+*3
 graph bar (mean) heatdd (mean) cooldd, over(hightempjan)
-```
-* How many cities are in the "West" Census region and the "Mountain" Census division?
-```
+
+
+*4
 tab region
 tab region, nolabel
 tab division
 tab division, nolabel
 count  if region == 4 & division == 8
+*Ans: 61 cities in both the "West" Census region and the "Mountain" Census division
 ```
-Ans: 61 cities in both the "West" Census region and the "Mountain" Census division
+
 
 ## Discrete/Categorical variables : Two-way tabulation and Pearson's chi-2 test
 
@@ -75,12 +86,11 @@ tab2 union married , m
 sum married union
 ```
 
-### Important 
+#### Important 
 * We are moving into commands that take data from multiple variables
 * If an observation has missing data for any of the variables, that 
   observation is dropped from the calculation.
-* With some commands, like `tab2`, we can avoid that behavior. But that will not
-  be possible for other commands.
+* With some commands, like `tab2`, we can avoid that behavior. But that will not be possible for other commands.
 
 
 
@@ -126,6 +136,50 @@ tab2 race union, chi2
 
 * Components of chi2 test statistic can be reported using option: `cchi2`
 * Students should read through these options after learning about the Chi-2 test in class.
+
+## In class activity 2
+
+Using the "high school and beyong" dataset from UCLA by this command:
+```
+use http://www.ats.ucla.edu/stat/stata/notes/hsb2
+```
+
+Use a do-file to produce the output that you used to arrive at your answers.
+
+Use comments before and after the command to document the question you are answering and the answer. **Interpret the result with comments.**
+
+
+1. Test whether the average writing score (write) differs significantly from 50.
+2. Test whether the mean for write is the same for males and females.
+3. Is there any relationship between the type of school attended and gender?
+
+
+```
+*1
+ttest write, by(female)
+
+* ANS: The mean of the variable write for this particular sample of 
+* students is 52.775, which is statistically significantly different 
+* from the test value of 50.  
+* We would conclude that this group of students has a significantly 
+* higher mean on the writing test than 50.
+
+*2
+ttest write=50
+
+* ANS: The results indicate that there is a statistically significant 
+* difference between the mean writing score for males and females 
+* (t = -3.7341, p = .0002).  
+* In other words, females have a statistically significantly higher 
+* mean score on writing (54.99) than males (50.12).
+
+*3
+tab2 schtyp female, chi2
+
+* ANS: These results indicate that there is no statistically significant 
+* relationship between the type of school attended and gender 
+* (chi-square with one degree of freedom = 0.0470, p = 0.828).  
+```
 
 
 ## Labels
@@ -196,7 +250,7 @@ label list occlbl
  2. apply label to variable
 
 
-#### Example from problem set last week:
+#### Labeling in action
 
 ```
 * Create an indicator called tenure20 for people with 20 or more years tenure.
