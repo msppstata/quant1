@@ -25,7 +25,5 @@ UNC Population Center: http://www.cpc.unc.edu/research/tools/data_analysis/stata
 ### Blackboard
 Additional Files on Coding Practice along with a Stata Tip Sheet can be found in Blackboard. 
 
-
-    - Go to My Organizations - you should be registered as a McCourt School Student
-    
-    - Go to Quant 1 & 3 materials -> Stata Recitation -> Fall 2014 
+ - Go to My Organizations - you should be registered as a McCourt School Student
+ - Go to Quant 1 & 3 materials -> Stata Recitation -> Fall 2014 
