@@ -193,6 +193,7 @@ help label
 - Show command syntax in help file
 
 - Example from previous recitation:
+
 ```
 clear
 sysuse nlsw88.dta
@@ -200,18 +201,23 @@ sysuse nlsw88.dta
 gen weekwage = wage*hours
 label variable weekwage "Ave. Weekly Pay"
 ```
+
 - Changes can also be made in the Variables Manager `Data > Variables Manager`
 - Remember to put the resulting "label" command into your do-file.
+
 ```
 generate agesq = age^2
 ```
+
 - Use the varibles manager to label, then add label to do-file.
+
 ```
 label variable agesq "Age Squared"
 ```
 
 - A very useful function when you start working with large data sets
 - `lookfor`: searches variable names and labels
+
 ```
 lookfor age
 ```
@@ -288,6 +294,36 @@ label variable once_married "Once married, but not currently married"
 label define once_marriedlbl 1 "Once married" 0 "Never or currently married" 
 label values once_married once_marriedlbl
 ```
+
+## In class activity 3
+Using the `nlsw88.dta` example dataset.
+
+Use a do-file to produce the output that you used to arrive at your answers.
+
+Use comments before and after the command to document the question you are answering and the answer.
+
+1. Label the data set as "NLS Mature and Young Women, 1988"
+2. Generate a new variable called `weekly_wage` and label it appropriately
+3. Generate a new indicator variable (numeric, value includes 1/2/3/etc.) called `employ_type` with the following categories: `full-time`,`part-time`,`others` based on your criteria.
+
+```
+*1
+sysuse nlsw88
+label data "NLS Mature and Young Women, 1988"
+
+*2
+gen weekly_wage=hours*wage
+label variable weekly_wage "Weekly wage"
+
+*3
+gen employ_type=.
+replace employ_type=1 if hours>=40 & hours!=.
+replace employ_type=2 if hours>=20 & hours<40
+replace employ_type=3 if hours<20
+label define employ_label 1 "Full time" 2 "Part time" 3 "Other"
+label values employ_type employ_label
+```
+
 
 #### `Encode/decode`
 - Changing between strings and labels 
