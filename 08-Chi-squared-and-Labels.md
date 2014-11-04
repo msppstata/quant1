@@ -2,7 +2,7 @@
 McCourt School of Public Policy, Georgetown University
 
 ## Key Ideas:
-- Calculate statistics based on two variables: tab2 (chi2 option), corr, pwcorr
+- Calculate statistics based on two variables: tab2 (chi2 option)
 - Create and modify variable and value labels 
 - Search variable labels 
 
