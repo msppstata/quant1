@@ -6,15 +6,10 @@ McCourt School of Public Policy, Georgetown University
  - Basic regression and location of relevant output 
  - Understand the role of missing data in analysis sample 
 
-### RESOURCES
-PDF Manuals [U] User's Guide, Section 20: Estimation and postestimation commands.
-
-
 ## Correlation
  Quantifies the way two variables move together.
  Can be calculated for any numeric variables, but, like other summary statistics,
  interpretation is not always clear for categorical variables. 
-
 
 ### Example: Wage and Tenure
 * Wage tends to increase with tenure
