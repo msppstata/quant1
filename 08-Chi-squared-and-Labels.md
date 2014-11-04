@@ -98,16 +98,16 @@ sum married union
 * column : Gives percentage breakdown of row category within each column.
 ```
 tab2 race union, column
-tab2 race if union==0
-tab2 race if union==1
+tab race if union==0
+tab race if union==1
 ```
 
 * row : Gives percentage breakdown of column category within each row.
 ```
 tab2 race union, row
-tab2 union if race==1
-tab2 union if race==2
-tab2 union if race==3
+tab union if race==1
+tab union if race==2
+tab union if race==3
 ```
 
 * cell : Gives percentage of observations in each cell. 
@@ -116,13 +116,38 @@ tab2 race union, cell
 ```
 
 * expected : Gives the expected number of observations in each cell based on marginal distributions of each variable
+* Example: What is the expected number of observations in the white, nonunion cell:
+
 ```
 tab2 race union, row column 
 ```
-* expected number of observations in the white, nonunion cell:
+
+* Get the probability of being in the white nonunion cell by multiplying the column percenage of nonunion times the row percentage of white.
+* Then multiply by the total number of observations to get the expected number.
+
 ```
-display 0.7204*0.7545*1878
+display 0.7204 * 0.7545 * 1878
+```
+
+* Same result using the expected option:
+
+```
 tab2 race union, expected 
+```
+
+* Why can't we get the percentage of white respondents by a 1-way tabulation?
+
+```
+tab race
+```
+
+* Percentage white here is 72.89%, vs. 72.04% from the two-way tabulation.
+* The difference is due to missing data in the union variable.
+* Observations that are missing data for union are exlcuded from the two-way tabulation.
+* We can make the figures match by excluding observations that are missing data for union.
+
+```
+tab race if union!=.
 ```
 
 ### Report Chi2 test statistic:
