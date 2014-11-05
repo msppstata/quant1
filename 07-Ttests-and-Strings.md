@@ -245,12 +245,13 @@ sysuse auto.dta, clear
 *1
 *Lincoln Continental
 //here's how i do the longest car
-*sort method - will only return one value
+*sort method - will only return one value, so not ideal here
 sort length
 list make in -1
 
 *sum method - will return all values matching the largest value
 sum length
+*remember summarize loads the r(). see the bottom of the summarize help file
 list make if length == r(max)
 // and here are the cars with the longest name
  Chev. Monte Carlo and  Linc. Continental 
@@ -262,9 +263,12 @@ list make if length(make) ==17
 *2
 *so I want the number of Chevrolet cars (Chev)
 count if regexm(make, "^Chev")
-display 6/74
+*and how many domestic cars are there?
+count if foreign == 0
+display 6/52
 
 *3
+*lets call cars with really good fuel mileage excellent
 gen Excellent_Cars = ""
 sum mpg, detail
 replace Excellent_Cars= make + " EXCELLENT" if mpg > r(p95)
