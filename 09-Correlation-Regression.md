@@ -64,23 +64,54 @@ pwcorr age grade wage tenure union
 pwcorr age grade wage tenure union, obs
 ```
  
-### Correlate Practice Questions: Use `IPEDSpull_recitation.dta`, which can be found on Blackboard 
+## In Class Activity 1
 
-1. Create a variable, percent_women,  that gives the percentage of full-time students that are women.
-2. Determine the correlation of percent_women with the graduation rate.
-3. Using pwcorr, find the correlation between retention rate, graduation rate, transfer rate, and percent of first-time full-time students with financial aid. Give the number of observations for each correlation.
-4. Tabulate the number of colleges in each region by size category. What percentage of colleges in the Far West are "Very Large"?
-5. Tabulate the number of colleges in each region by whether the college is a land-grant college. Does it seem likely that the proportion of land-grant colleges is similar in each region?
+Correlate Practice Questions: 
+
+Use highschool and beyond data with this command:
+
+```
+use http://www.ats.ucla.edu/stat/stata/notes/hsb2
+```
+
+Write stata command and interpret the result in a do-file.
+
+1. Create a scatter plot with a linear fitted line to examine the relationship between write and read.
+2. What is the correlation between write and read? Is it significant? Report the observation number in this case.
+3. Generate a new variable called `id_odd` which is equal to 1 if the student id number is odd numbers and 0 if it is even numbers. (Hint: try Google `stata modulus`)
+4. Count the number of `id_odd` equals to 1. Replace the `write` to missing value if `id_odd` equals to 1.
+5. What is the correlation between write and read now? Is it significant? Report the observation number in this case. Compare result with question 2.
+6. Count the number of female students if their student id is odd. Replace the `read` to missing value if the respondent is female with an odd student id.
+7. What is the correlation between write and read now? Is it significant? Report the observation number in this case. Compare result with question 2 and 5.
 
 ### Answers:
 
 ```
-use "C:\Users\gppilab\Desktop\IPEDSdata_recitation.dta", clear
-gen percent_women = ftwomen / allfttotal
-pwcorr percent_women gradrate
-pwcorr ftretention gradrate transfer percentftftanyaid, obs sig
-tab  region sizecat, row
-tab region landgrant, chi2
+*1
+clear
+use http://www.ats.ucla.edu/stat/stata/notes/hsb2
+twoway (scatter write read) (lfit write read)
+
+*2
+pwcorr write read, obs sig
+
+*3
+gen id_odd=mod(id,2)
+
+*4
+count if id_odd ==1
+replace write=. if id_odd==1
+
+*5
+pwcorr write read, obs sig
+
+*6
+count if id_odd==1 & female==1
+replace read=. if id_odd==1 & female==1
+
+*7
+pwcorr write read, obs sig
+
 ```
 
 
@@ -183,23 +214,28 @@ regress mpg weight length
 
 * What happens to number of observations? Why?
 
-### Practice Problems: Use IPEDSpull_recitation.dta, which can be found on Blackboard.
+### In Class Activity 2
+
+
+Use high school and beyond data with this command:
 
 ```
-use "C:\Users\gppilab\Desktop\IPEDSdata_recitation.dta", clear
+use http://www.ats.ucla.edu/stat/stata/notes/hsb2
 ```
 
-1. Regress the graduation rate (dependent variable) on the the number of full-time students. What does the relationship seem to be?
-2. Regress the graduation rate (dependent variable) on the number of college employees, the percent of students with aid, and the full time retention rate. 
-3. Regression example using if statement 
-4. Regression example with missing data
+Write stata command and interpret the result in a do-file.
+
+1. Regress the writing score (dependent variable) on gender. What does the relationship seem to be?
+2. Regress the writing score (dependent variable) on gender, type of school, type of program, and student id. What does the relationship seem to be?
+3. Try regression with using if statement 
+4. Try Regression with missing data
 
 ### Answers
 
 ```
 
-regress gradrate allfttotal
-regress gradrate ftretention totemp percentftftanyaid
+regress write gender
+regress write female schtyp prog id
 
 ```
 
