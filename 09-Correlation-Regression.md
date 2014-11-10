@@ -15,6 +15,7 @@ McCourt School of Public Policy, Georgetown University
 * Wage tends to increase with tenure
 
 ```
+sysuse nlsw88.dta
 twoway (scatter wage tenure) (lfit wage tenure)
 ```
 
@@ -111,6 +112,7 @@ replace read=. if id_odd==1 & female==1
 
 *7
 pwcorr write read, obs sig
+The correlation is significant in all instances.
 
 ```
 
@@ -227,15 +229,18 @@ Write stata command and interpret the result in a do-file.
 
 1. Regress the writing score (dependent variable) on gender. What does the relationship seem to be?
 2. Regress the writing score (dependent variable) on gender, type of school, type of program, and student id. What does the relationship seem to be?
-3. Try regression with using if statement 
+3. Regress the writing score on the other types of scores only for respondents went to public school.
 4. Try Regression with missing data
 
 ### Answers
 
 ```
-
 regress write gender
 regress write female schtyp prog id
+codebook schtyp, tab(999)
+reg write read math science socst if schtyp ==1
+//or, if you want information for both groups:
+bysort:reg write read math science socst 
 
 ```
 
