@@ -8,9 +8,8 @@ McCourt School of Public Policy, Georgetown University
 
 ### RESOURCES
 [http://www.haverford.edu/TIER]
-
-
-
+- Advice for organizing your do-files and overall project
+- Sample research projects with initial data, all do-files, and final research paper 
 
 ## Warm Up problems using the `nslw88.dta` example dataset:
 ```
@@ -42,26 +41,31 @@ regress wage ttl_exp union c_city collgrad
 * Effect of a 1 unit (year) increase in experience is a 0.295 increase in wage, controlling for these other factors (keeping them at the same level)
 ```
 
-
 ## End of Semester Project 
 
-At the end of this semester, students will be given a simulation project. It will be larger and more complex than any exercises we've done so far. 
+At the end of this semester, students will be given a simulation project. 
 
-This recitation will simulate a large data project. We will complete a small and simple project, but organize the project as if it were a large and complex project.
+It will be larger and more complex than any exercises we've done so far. 
+
+This recitation will simulate a large data project. 
+
+We will complete a small and simple project, but organize the project as if it were a large and complex project.
 
 ### Set-up
 First create your main project folder, titled `recitation10`, on the desktop. 
 
 Download the data set auto_raw.dta from Blackboard and save in recitation10 folder.
 
-Open Stata. Type -use auto_raw.dta- in the command prompt. Did it work?
+Open Stata. Type `use auto_raw.dta` in the command prompt. Did it work?
 
 If no, you need to set the ***working directory***. 
 
 
 ### Working Directory 
 
-Stata has a single working directory where it is looking at any given time. It is displayed at the bottom of the window or use pwd.
+Stata has a single working directory where it is looking at any given time. 
+
+It is displayed at the bottom of the window or use pwd.
 
 If you try to use/save a file without using the full path name to the file, Stata will only look in the current working directory.
 
@@ -84,6 +88,8 @@ You can also add the use and save commands to your do-file.
 
 use auto_raw.dta, clear
 
+* Stata commands
+
 save auto_final.dta, replace
 
 ```
@@ -91,7 +97,7 @@ save auto_final.dta, replace
 - As you progress through the project, you will develop the do-file to create your final analysis data set. 
 - You generally do not have to save intermediate data sets. 
 - Instead, just fill in the commands to create your final data set. 
-- If you make a mistake, just fix it in the do-file and re-run it.
+- If you make a mistake, fix it in the do-file and re-run it.
 
 
 Suppose you received the following data description. Fill in your do-file 
