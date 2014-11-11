@@ -52,57 +52,46 @@ This recitation will simulate a large data project. We will complete a small and
 ### Set-up
 First create your main project folder, titled `recitation10`, on the desktop. 
 
-Open Stata, open the `auto.dta` data set
+Download the data set auto_raw.dta from Blackboard and save in recitation10 folder.
 
-Save a copy of the `auto.dta` data set, named `auto_raw.dta` in the new `recitation10` folder
+Open Stata. Type -use auto_raw.dta- in the command prompt. Did it work?
 
-So far, we've generally been working with full path names.
+If no, you need to set the ***working directory***. 
 
-This is for small projects, or if you're always working on the same computer.
-
-If you have a large project, where you're saving files, graphs, etc, the full path name becomes cumbersome
-
-If you have to change computers, you'll have to change the path name throughout.
-
-Instead, for a large project, set the ***working directory***. 
 
 ### Working Directory 
 
 Stata has a single working directory where it is looking at any given time. It is displayed at the bottom of the window or use pwd.
 
-Anything that you save using typed commands will save to this directory. If you try to open anything with a typed command, it will only look in 
-this directory.
+If you try to use/save a file without using the full path name to the file, Stata will only look in the current working directory.
 
 See what is currently in your working directory: ls / dir
 
-Working directory is unrelated to any saving or opening that you do using the drop-down menus in Stata or in the do-file editor.
+Working directory is unrelated to any saving or opening that you do using the drop-down menus in Stata. 
 
 The only way to change it is with the cd command or the Change Working Directory menu item.
 
 Use the Change Working Directory drop-down to change to the recitation folder.
-Copy the cd command to the do-file as the first line
+
+Copy the cd command to the do-file as the first line.
+
+You can also add the use and save commands to your do-file.
 
 ```
 
 *change working directory
 *cd "C:\Users\gppilab\Desktop\Recitation 10"
 
-sysuse auto, clear
+use auto_raw.dta, clear
 
-save auto_raw.dta, replace
-
-clear
-use auto_raw.dta
-```
-
-### COMMANDS FOR DATA MANIPULATION
-```
 save auto_final.dta, replace
+
 ```
-* As you progress through the project, you will develop the do-file to create
-* your final analysis data set. You generally do not have to save intermediate 
-* data sets. Instead, just fill in the commands to create your final data set. 
-* If you make a mistake, just fix it in the do-file and re-run it.
+
+- As you progress through the project, you will develop the do-file to create your final analysis data set. 
+- You generally do not have to save intermediate data sets. 
+- Instead, just fill in the commands to create your final data set. 
+- If you make a mistake, just fix it in the do-file and re-run it.
 
 
 Suppose you received the following data description. Fill in your do-file 
@@ -111,11 +100,6 @@ with commands and comments to replicate the analysis that follows:
 This study looks at the relationship between vehicle mileage, weight, length, 
 and price. We also examine whether this relationship changes according to the 
 vehicle's repair record.
-
-Five records were dropped from our data, as they were missing data on their 
-repair record. Data on mileage for Datsun vehicles is known to be inaccurate,
-so all Datsun automobiles were dropped from the sample. Thus, our final 
-analysis sample contained 65 records.
 
 We had to correct two problems in price reporting. First, prices for domestic 
 automobiles were reported in 1978 nominal dollars, while prices for foreign 
@@ -126,10 +110,22 @@ inflation rate of 6.8%.
 We also know that some very high and very low prices are mistakes in the data.
 The maximum automobile price in 1978 was $15,000 and the minimum price was
 4,000. For prices outside this range, we recoded the value of price to 
-missing, or ".". We did not want to loose these observations completely,
-so we did not drop them from the data set. This correction resulted in 
-7 missing values for the price variables. The mean of the corrected price
-variable is 6364.73.
+the minimum or maximum value. Prices higher than $15,000 were recoded to
+exactly $15,000, and prices lower than $4,000 were recoded to exactly $4,000.
+This operation changed prices for 8 observation. The mean of the corrected price
+variable is $6,311.49.
+
+After this correction of price, we had to drop several observations for 
+different reasons.  Five records were dropped because, they were missing data on their 
+repair record. Furthermore, data on mileage for Datsun vehicles is known to be inaccurate,
+so all Datsun automobiles were dropped from the sample. Thus, our final 
+analysis sample contained 65 records.
+
+Before dropping these records, we compared the average price of the vehicles 
+were were dropping from the analysis to the average price of the vehicles that
+would remain in the analysis. We found that the dropped vehicles cost $264.71 
+more, on average, than non-dropped vehicles. This difference was not statistically
+different from zero. 
 
 In addition to the basic variables, mileage, weight, and length, we analysed
 specifications with variable transformations including the natural logs of
@@ -143,53 +139,65 @@ The distribution of the final sample was roughly 60% low, 40% high.
 We also wanted to compare cars by categories of price. We created a new 
 categorical variable, price_cat, to divide cars into 4 categories according
 to the following conditions on price: 
-1 Less than 4,000
-2 Greater or equal to 4,000 and less than 5,000
-3 Greater or equal to 5,000 and less than 10,000
-4 Greater or equal to 10,000
+1 Less than or equal to 4,000
+2 Greater than 4,000 and less than or equal to 5,000
+3 Greater than 5,000 and less than or equal to 10,000
+4 Greater than 10,000
+We found that the largest category was number 2, with 26 vehicles or 40 percent
+of the distribution. 
 
-* transformation by sub-group
-* continuous to categorical with multiple categories
+For our final analysis, we ran a regression of mileage on length, weight, and price. 
+We repeated this specification, using only vehicles with a low repair record.
+Finally, we ran the same regression, omitting those vehicles in the highest and lowest price categories.   
+The final sample sizes for our three final regressions were 65, 40, and 48.
+
 
 ```
 clear
-*use auto_raw.dta
-sysuse auto
+use auto_raw.dta
 
+
+*** Correct price data ***
+replace price = price * 1.068 if foreign==1
+
+replace price = 4000 if price < 4000
+replace price = 15000 if price > 15000
+codebook price
+* Verify number of changes 
+* Verify mean of corrected price variable: 6,364.73.	
 
 
 *** Sample Restriction ***
 
-
-
+* Generate a variable to mark the observations that will be dropped:
+gen todrop = 0
 
 * Drop 5 records with missing data from rep78
 codebook rep78
-drop if rep78==.
+replace todrop = 1 if rep78==.
 * Drop Datsuns
 tab make
-drop if word(make,1)=="Datsun"
+replace todrop = 1 if word(make,1)=="Datsun"
 * Verify resulting number of observations:
-count
+tab todrop
 * 65 observations
 
+* Compare the price of the sample observations to the observations that will be dropped:
+ttest price , by(todrop)
+* Difference is -264.7114 
+* P-value for two-tailed test is : Pr(|T| > |t|) = 0.8027
 
-*** Correct price data ***
-
-replace price = . if price < 4000
-replace price = . if price > 15000
-codebook price
-* Verify number of missing: 7.
-* Verify mean of corrected price variable: 6,364.73.	
+* Drop the "todrop" observations
+drop if todrop==1
 
 
 *** Variable Creation ***
+
 * First examine variables
 codebook mpg weight length price
 sum mpg weight length price, de
 
 * Create Log variables
-
 gen lnmpg	=ln(mpg)
 gen lnweight=ln(weight)
 gen lnlength=ln(length)
@@ -203,7 +211,7 @@ lab var lnlength "Log Length"
 gen weightperinch = weight/length
 lab var weightperinch "Weight Per Inch"
 
-
+sum lnmpg lnweight lnlength weightperinch
 
 * Create indicator for high rep78 (4 or 5)
 gen highrep = 0
@@ -219,14 +227,14 @@ tab rep78 if highrep ==1
 
 * verify 60-40 distribution
 tab highrep, m
-
+* 61.54 percent low, 38.46 percent high
 
 * Create Price categorical
 gen price_cat=.
-replace price_cat=1 if price < 4000
-replace price_cat=2 if price >=4000  & price < 5000 
-replace price_cat=3 if price >=5000  & price < 10000 
-replace price_cat=4 if price >=10000 & price < . 
+replace price_cat=1 if price <=4000
+replace price_cat=2 if price > 4000  & price <= 5000 
+replace price_cat=3 if price > 5000  & price <= 10000 
+replace price_cat=4 if price > 10000 & price <  . 
 
 * Verify variable creation with sum of the different categories.
 sum price if price_cat== 1
@@ -235,9 +243,15 @@ sum price if price_cat== 3
 sum price if price_cat== 4
 
 * Report distribution of categories:
-tab1 price_cat
+tab price_cat
 
-*Save our modifed version of the data
+*** Final Regressions ***
+regress mpg weight length price
+regress mpg weight length price if highrep==0
+regress mpg weight length price if price_cat!=1 & price_cat!=4
+
+*Save modifed version of the data
 save auto_final.dta, replace
+
 ```
 
