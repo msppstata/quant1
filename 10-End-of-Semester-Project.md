@@ -54,9 +54,9 @@ We will complete a small and simple project, but organize the project as if it w
 ### Set-up
 First create your main project folder, titled `recitation10`, on the desktop. 
 
-Download the data set auto_raw.dta from Blackboard and save in recitation10 folder.
+Download the data set vehicles.dta from Blackboard and save in recitation10 folder.
 
-Open Stata. Type `use auto_raw.dta` in the command prompt. Did it work?
+Open Stata. Type `use vehicles.dta` in the command prompt. Did it work?
 
 If no, you need to set the ***working directory***. 
 
@@ -86,11 +86,32 @@ You can also add the use and save commands to your do-file.
 *change working directory
 *cd "C:\Users\gppilab\Desktop\Recitation 10"
 
-use auto_raw.dta, clear
+use vehicles.dta, clear
 
 * Stata commands
 
-save auto_final.dta, replace
+save vehicles_final.dta, replace
+
+```
+
+### Large Datasets
+
+- Some final projects may require you to use a very large data set
+- Stata IC can only open roughly 2,000 variables at a time. 
+- For a data set with more than 2,000 variables, open a subset with `use [varlist] using dataset.dta`
+- Find variable names with `describe using dataset.dta`
+
+```
+*change working directory
+*cd "C:\Users\gppilab\Desktop\Recitation 10"
+
+describe using vehicles.dta 
+
+use make price mpg weight length using vehicles.dta, clear
+
+* Stata commands
+
+save vehicles_final.dta, replace
 
 ```
 
@@ -160,8 +181,8 @@ The final sample sizes for our three final regressions were 65, 40, and 48.
 
 ```
 clear
-use auto_raw.dta
-
+* Open subset of relevant variables
+use make price mpg weight length using vehicles.dta, clear
 
 *** Correct price data ***
 replace price = price * 1.068 if foreign==1
@@ -257,7 +278,7 @@ regress mpg weight length price if highrep==0
 regress mpg weight length price if price_cat!=1 & price_cat!=4
 
 *Save modifed version of the data
-save auto_final.dta, replace
+save vehicles_final.dta, replace
 
 ```
 
