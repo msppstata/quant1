@@ -182,7 +182,7 @@ The final sample sizes for our three final regressions were 65, 40, and 48.
 ```
 clear
 * Open subset of relevant variables
-use make price mpg weight length using vehicles.dta, clear
+use make price mpg weight length domestic rep78 using vehicles.dta, clear
 
 *** Correct price data ***
 replace price = price * 1.068 if domestic==0
