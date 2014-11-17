@@ -107,7 +107,7 @@ save vehicles_final.dta, replace
 
 describe using vehicles.dta 
 
-use make price mpg weight length using vehicles.dta, clear
+use make price mpg weight length domestic using vehicles.dta, clear
 
 * Stata commands
 
@@ -185,7 +185,7 @@ clear
 use make price mpg weight length using vehicles.dta, clear
 
 *** Correct price data ***
-replace price = price * 1.068 if foreign==1
+replace price = price * 1.068 if domestic==0
 
 replace price = 4000 if price < 4000
 replace price = 15000 if price > 15000
