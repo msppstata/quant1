@@ -260,4 +260,6 @@ For problem sets, students should submit do-file and log.
 	Help > PDF Documentation
 	Show Getting Started Guide for Windows and Mac
 
+The End!
+
 
