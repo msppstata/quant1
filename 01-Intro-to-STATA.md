@@ -259,3 +259,6 @@ For problem sets, students should submit do-file and log.
 - Dropdown menu
 	Help > PDF Documentation
 	Show Getting Started Guide for Windows and Mac
+
+
+-the end
