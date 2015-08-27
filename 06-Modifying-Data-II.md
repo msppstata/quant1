@@ -94,6 +94,15 @@ Create a `do-file` and `log-file` showing your work with proper comments.
 1. What is the average wage of nonunion white workers in professional service industry as Sales or Laborers? Is that varies by marriage status?
 2. Among those who earn second highest wage in the sample, how many of them are single?
 
+```
+*1
+bysort married : sum wage if union==0 & race==1 & industry==11 & /// 
+(occupation==3 | occupation==8)
+
+*2
+sum wage, detail
+tab married  if wage>40.19807 & wage <40.19809
+```
 
 
 ## Generating variables with if statements
@@ -225,3 +234,14 @@ Create a `do-file` and `log-file` showing your work with proper comments.
 2. What is the average hourly wage for rich guys who work in Manufacturing, Transport/Comm/Utility, or Wholesale/Retail Trade industry (Hint: Try `inlist`)?
 
 
+```
+*1
+gen wage_indicator=.
+gen weekly_wage=hours*wage
+sum weekly_wage, detail
+replace wage_indicator=1 if weekly_wage<r(p25)
+replace wage_indicator=5 if weekly_wage>r(p75)
+
+*2
+sum wage if inlist(industry,4,5,6) & wage_indicator==5
+```
